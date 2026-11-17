@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Fluxo BPMN</title>
+<link rel="stylesheet" href="https://unpkg.com/bpmn-js@17.11.1/dist/assets/bpmn-js.css">
+<style>html,body,#canvas{height:100%;margin:0;background:#fff;font-family:system-ui,sans-serif}
+#titulo{position:absolute;top:10px;left:16px;z-index:5;font-weight:600}</style>
+</head>
+<body>
+<div id="titulo">Robô Alerta Chuva SP — fluxo BPMN (abra via servidor local: python -m http.server)</div>
+<div id="canvas"></div>
+<script src="https://unpkg.com/bpmn-js@17.11.1/dist/bpmn-navigated-viewer.production.min.js"></script>
+<script>
+const viewer = new BpmnJS({ container: "#canvas" });
+fetch("processo_alerta_chuva.bpmn").then(r => r.text())
+  .then(xml => viewer.importXML(xml))
+  .then(() => viewer.get("canvas").zoom("fit-viewport"))
+  .catch(e => { document.getElementById("titulo").textContent = "Erro ao abrir o BPMN: " + e.message; });
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+$ python executar.py 
+2026-11-17 01:09:23 | INFO    | [INICIO_EXECUCAO] cenario=real simular_falha_api=False referencia=2026-11-17T01:00
+2026-11-17 01:09:23 | INFO    | [INSCRICOES_CARREGADAS] validos=256 rejeitados={'sem_consentimento': 11, 'email_invalido': 6, 'telefone_invalido': 15, 'inscricao_inativa': 5, 'duplicado': 3, 'linha_nao_json': 1, 'municipio_nao_monitorado': 8}
+2026-11-17 01:09:23 | INFO    | [MUNICIPIO_PROCESSADO] municipio=São Paulo fonte=api chuva_24h_mm=0.0 max_1h_mm=0.0 nivel_alerta=Baixo motivo=acumulado 0.0 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 01:09:24 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Guarulhos fonte=api chuva_24h_mm=0.2 max_1h_mm=0.1 nivel_alerta=Baixo motivo=acumulado 0.2 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 01:09:25 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Osasco fonte=api chuva_24h_mm=0.0 max_1h_mm=0.0 nivel_alerta=Baixo motivo=acumulado 0.0 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 01:09:26 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Santo André fonte=api chuva_24h_mm=0.7 max_1h_mm=0.3 nivel_alerta=Baixo motivo=acumulado 0.7 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 01:09:27 | INFO    | [MUNICIPIO_PROCESSADO] municipio=São Bernardo do Campo fonte=api chuva_24h_mm=1.3 max_1h_mm=0.5 nivel_alerta=Baixo motivo=acumulado 1.3 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 01:09:28 | INFO    | [MUNICIPIO_PROCESSADO] municipio=São Caetano do Sul fonte=api chuva_24h_mm=0.2 max_1h_mm=0.1 nivel_alerta=Baixo motivo=acumulado 0.2 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 01:09:28 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Mauá fonte=api chuva_24h_mm=1.0 max_1h_mm=0.5 nivel_alerta=Baixo motivo=acumulado 1.0 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 01:09:29 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Diadema fonte=api chuva_24h_mm=0.3 max_1h_mm=0.1 nivel_alerta=Baixo motivo=acumulado 0.3 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 01:09:30 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Barueri fonte=api chuva_24h_mm=0.3 max_1h_mm=0.1 nivel_alerta=Baixo motivo=acumulado 0.3 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 01:09:31 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Taboão da Serra fonte=api chuva_24h_mm=0.2 max_1h_mm=0.1 nivel_alerta=Baixo motivo=acumulado 0.2 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 01:09:31 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Franco da Rocha fonte=api chuva_24h_mm=0.0 max_1h_mm=0.0 nivel_alerta=Baixo motivo=acumulado 0.0 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 01:09:32 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Mogi das Cruzes fonte=api chuva_24h_mm=0.4 max_1h_mm=0.2 nivel_alerta=Baixo motivo=acumulado 0.4 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 01:09:32 | INFO    | [PAINEL_PUBLICADO] arquivo=saida/painel_alertas.json municipios_em_alerta=0
+2026-11-17 01:09:32 | INFO    | [FIM_EXECUCAO] execucao_id=20261117T010923-c40f54 inicio=2026-11-17T01:09:23 fim=2026-11-17T01:09:32 duracao_s=9.32 status=SUCESSO municipios_processados=12 municipios_com_erro=0 municipios_via_cache=0 alertas_emitidos=0 inscritos_validos=256 inscritos_rejeitados=49 notificacoes_enviadas=0 notificacoes_ignoradas_duplicadas=0 total_erros=0
+
+===== RESUMO DA EXECUÇÃO =====
+execucao_id                         20261117T010923-c40f54
+inicio                              2026-11-17T01:09:23
+fim                                 2026-11-17T01:09:32
+duracao_s                           9.32
+status                              SUCESSO
+municipios_processados              12
+municipios_com_erro                 0
+municipios_via_cache                0
+alertas_emitidos                    0
+inscritos_validos                   256
+inscritos_rejeitados                49
+notificacoes_enviadas               0
+notificacoes_ignoradas_duplicadas   0
+total_erros                         0
+(código de saída: 0)

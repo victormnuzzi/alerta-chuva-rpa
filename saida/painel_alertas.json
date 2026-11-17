@@ -1,0 +1,160 @@
+{
+  "gerado_em": "2026-11-17T01:09:32",
+  "referencia": "2026-11-17T01:00",
+  "janela_horas": 24,
+  "execucao_id": "20261117T010923-c40f54",
+  "cenario": "real",
+  "resumo": {
+    "municipios": 12,
+    "municipios_em_alerta": 0,
+    "populacao_em_alerta": 0,
+    "municipios_sem_dados": 0,
+    "notificacoes_enviadas": 0
+  },
+  "municipios": [
+    {
+      "codigo_ibge": "3550308",
+      "municipio": "São Paulo",
+      "populacao": 11451999,
+      "chuva_24h_mm": 0.0,
+      "max_1h_mm": 0.0,
+      "nivel": "Baixo",
+      "motivo": "acumulado 0.0 mm >= 0 mm",
+      "fonte": "api",
+      "inscritos_ativos": 167,
+      "notificacoes_enviadas": 0
+    },
+    {
+      "codigo_ibge": "3518800",
+      "municipio": "Guarulhos",
+      "populacao": 1291771,
+      "chuva_24h_mm": 0.2,
+      "max_1h_mm": 0.1,
+      "nivel": "Baixo",
+      "motivo": "acumulado 0.2 mm >= 0 mm",
+      "fonte": "api",
+      "inscritos_ativos": 12,
+      "notificacoes_enviadas": 0
+    },
+    {
+      "codigo_ibge": "3534401",
+      "municipio": "Osasco",
+      "populacao": 728615,
+      "chuva_24h_mm": 0.0,
+      "max_1h_mm": 0.0,
+      "nivel": "Baixo",
+      "motivo": "acumulado 0.0 mm >= 0 mm",
+      "fonte": "api",
+      "inscritos_ativos": 6,
+      "notificacoes_enviadas": 0
+    },
+    {
+      "codigo_ibge": "3547809",
+      "municipio": "Santo André",
+      "populacao": 748919,
+      "chuva_24h_mm": 0.7,
+      "max_1h_mm": 0.3,
+      "nivel": "Baixo",
+      "motivo": "acumulado 0.7 mm >= 0 mm",
+      "fonte": "api",
+      "inscritos_ativos": 16,
+      "notificacoes_enviadas": 0
+    },
+    {
+      "codigo_ibge": "3548708",
+      "municipio": "São Bernardo do Campo",
+      "populacao": 810729,
+      "chuva_24h_mm": 1.3,
+      "max_1h_mm": 0.5,
+      "nivel": "Baixo",
+      "motivo": "acumulado 1.3 mm >= 0 mm",
+      "fonte": "api",
+      "inscritos_ativos": 17,
+      "notificacoes_enviadas": 0
+    },
+    {
+      "codigo_ibge": "3548807",
+      "municipio": "São Caetano do Sul",
+      "populacao": 165655,
+      "chuva_24h_mm": 0.2,
+      "max_1h_mm": 0.1,
+      "nivel": "Baixo",
+      "motivo": "acumulado 0.2 mm >= 0 mm",
+      "fonte": "api",
+      "inscritos_ativos": 2,
+      "notificacoes_enviadas": 0
+    },
+    {
+      "codigo_ibge": "3529401",
+      "municipio": "Mauá",
+      "populacao": 418261,
+      "chuva_24h_mm": 1.0,
+      "max_1h_mm": 0.5,
+      "nivel": "Baixo",
+      "motivo": "acumulado 1.0 mm >= 0 mm",
+      "fonte": "api",
+      "inscritos_ativos": 8,
+      "notificacoes_enviadas": 0
+    },
+    {
+      "codigo_ibge": "3513801",
+      "municipio": "Diadema",
+      "populacao": 393237,
+      "chuva_24h_mm": 0.3,
+      "max_1h_mm": 0.1,
+      "nivel": "Baixo",
+      "motivo": "acumulado 0.3 mm >= 0 mm",
+      "fonte": "api",
+      "inscritos_ativos": 4,
+      "notificacoes_enviadas": 0
+    },
+    {
+      "codigo_ibge": "3505708",
+      "municipio": "Barueri",
+      "populacao": 316473,
+      "chuva_24h_mm": 0.3,
+      "max_1h_mm": 0.1,
+      "nivel": "Baixo",
+      "motivo": "acumulado 0.3 mm >= 0 mm",
+      "fonte": "api",
+      "inscritos_ativos": 6,
+      "notificacoes_enviadas": 0
+    },
+    {
+      "codigo_ibge": "3552809",
+      "municipio": "Taboão da Serra",
+      "populacao": 273542,
+      "chuva_24h_mm": 0.2,
+      "max_1h_mm": 0.1,
+      "nivel": "Baixo",
+      "motivo": "acumulado 0.2 mm >= 0 mm",
+      "fonte": "api",
+      "inscritos_ativos": 3,
+      "notificacoes_enviadas": 0
+    },
+    {
+      "codigo_ibge": "3516408",
+      "municipio": "Franco da Rocha",
+      "populacao": 144849,
+      "chuva_24h_mm": 0.0,
+      "max_1h_mm": 0.0,
+      "nivel": "Baixo",
+      "motivo": "acumulado 0.0 mm >= 0 mm",
+      "fonte": "api",
+      "inscritos_ativos": 4,
+      "notificacoes_enviadas": 0
+    },
+    {
+      "codigo_ibge": "3530607",
+      "municipio": "Mogi das Cruzes",
+      "populacao": 451505,
+      "chuva_24h_mm": 0.4,
+      "max_1h_mm": 0.2,
+      "nivel": "Baixo",
+      "motivo": "acumulado 0.4 mm >= 0 mm",
+      "fonte": "api",
+      "inscritos_ativos": 11,
+      "notificacoes_enviadas": 0
+    }
+  ]
+}

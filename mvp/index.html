@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alerta Chuva SP</title>
+<style>
+  :root { --bg:#f5f7fa; --card:#fff; --tx:#1c2430; --mut:#5b6675; --bd:#dde3ea;
+          --baixo:#2e7d32; --moderado:#b8860b; --forte:#d35400; --mforte:#b71c1c; --sem:#6b7280; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:system-ui,-apple-system,"Segoe UI",sans-serif; background:var(--bg); color:var(--tx); }
+  header { background:#0d3b66; color:#fff; padding:20px 16px; }
+  header h1 { margin:0; font-size:1.5rem; }
+  header p { margin:4px 0 0; opacity:.85; font-size:.9rem; }
+  main { max-width:1100px; margin:0 auto; padding:16px; }
+  .resumo { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px; margin-bottom:16px; }
+  .kpi { background:var(--card); border:1px solid var(--bd); border-radius:10px; padding:14px; }
+  .kpi b { display:block; font-size:1.6rem; }
+  .kpi span { color:var(--mut); font-size:.85rem; }
+  .grade { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:12px; }
+  .mun { background:var(--card); border:1px solid var(--bd); border-left:6px solid var(--cor); border-radius:10px; padding:14px; }
+  .mun h3 { margin:0 0 6px; font-size:1.05rem; }
+  .selo { display:inline-block; background:var(--cor); color:#fff; border-radius:999px; padding:2px 10px; font-size:.8rem; font-weight:600; }
+  .mun dl { display:grid; grid-template-columns:auto 1fr; gap:2px 10px; margin:10px 0 0; font-size:.85rem; }
+  .mun dt { color:var(--mut); } .mun dd { margin:0; text-align:right; }
+  .aviso { background:#fff4e5; border:1px solid #f0c27b; border-radius:10px; padding:12px; margin-bottom:16px; }
+  footer { color:var(--mut); font-size:.8rem; text-align:center; padding:20px 16px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Alerta Chuva SP</h1>
+  <p>Previsão das próximas 24 h nos 12 municípios da Grande São Paulo. Atualizado pelo robô RPA.</p>
+</header>
+<main>
+  <div id="aviso" class="aviso" hidden></div>
+  <section class="resumo" id="resumo"></section>
+  <section class="grade" id="grade"></section>
+</main>
+<footer id="rodape">Este painel não substitui os avisos oficiais. Emergências: Defesa Civil 199.</footer>
+<script>
+const CORES = { "Baixo":"--baixo", "Moderado":"--moderado", "Forte":"--forte", "Muito forte":"--mforte", "Sem dados":"--sem" };
+const ORDEM = { "Muito forte":0, "Forte":1, "Moderado":2, "Baixo":3, "Sem dados":4 };
+const fmt = n => n == null ? "—" : n.toLocaleString("pt-BR");
+const el = (tag, attrs = {}, txt) => { const e = document.createElement(tag); Object.assign(e, attrs); if (txt != null) e.textContent = txt; return e; };
+
+async function carregar() {
+  const aviso = document.getElementById("aviso");
+  try {
+    const r = await fetch("../saida/painel_alertas.json?t=" + Date.now());
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    const p = await r.json();
+    desenhar(p);
+    const idadeMin = (Date.now() - new Date(p.gerado_em)) / 60000;
+    if (idadeMin > 90) { aviso.hidden = false; aviso.textContent = `Atenção: dados de ${Math.round(idadeMin)} min atrás; o robô pode estar parado.`; }
+    else if (p.resumo.municipios_sem_dados) { aviso.hidden = false; aviso.textContent = `${p.resumo.municipios_sem_dados} município(s) sem previsão nesta execução (fonte indisponível).`; }
+    else aviso.hidden = true;
+  } catch (e) {
+    aviso.hidden = false;
+    aviso.textContent = "Não foi possível ler o painel gerado pelo robô (" + e.message + "). Rode: python executar.py";
+  }
+}
+
+function desenhar(p) {
+  const res = document.getElementById("resumo"); res.replaceChildren();
+  [[p.resumo.municipios_em_alerta, "municípios em alerta (Forte ou pior)"],
+   [fmt(p.resumo.populacao_em_alerta), "pessoas em municípios em alerta"],
+   [fmt(p.resumo.notificacoes_enviadas), "avisos enviados nesta execução"],
+   [new Date(p.gerado_em).toLocaleString("pt-BR"), "última atualização do robô"]]
+  .forEach(([v, t]) => { const k = el("div", {className:"kpi"}); k.append(el("b", {}, v), el("span", {}, t)); res.append(k); });
+
+  const grade = document.getElementById("grade"); grade.replaceChildren();
+  [...p.municipios].sort((a, b) => ORDEM[a.nivel] - ORDEM[b.nivel] || (b.chuva_24h_mm ?? -1) - (a.chuva_24h_mm ?? -1))
+  .forEach(m => {
+    const c = el("article", {className:"mun"}); c.style.setProperty("--cor", `var(${CORES[m.nivel]})`);
+    c.append(el("h3", {}, m.municipio), el("span", {className:"selo"}, m.nivel));
+    const dl = el("dl");
+    [["Chuva prevista 24 h", m.chuva_24h_mm == null ? "—" : m.chuva_24h_mm + " mm"],
+     ["Maior chuva em 1 h", m.max_1h_mm == null ? "—" : m.max_1h_mm + " mm"],
+     ["População", fmt(m.populacao)],
+     ["Inscritos ativos", fmt(m.inscritos_ativos)],
+     ["Avisos enviados", fmt(m.notificacoes_enviadas)],
+     ["Fonte do dado", m.fonte]].forEach(([k, v]) => dl.append(el("dt", {}, k), el("dd", {}, v)));
+    c.append(dl); c.title = m.motivo; grade.append(c);
+  });
+  document.getElementById("rodape").textContent =
+    `Execução ${p.execucao_id} · cenário: ${p.cenario} · Este painel não substitui os avisos oficiais. Emergências: Defesa Civil 199.`;
+}
+carregar(); setInterval(carregar, 60000);
+</script>
+</body>
+</html>

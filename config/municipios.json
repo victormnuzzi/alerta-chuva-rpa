@@ -1,0 +1,14 @@
+[
+  {"codigo_ibge": "3550308", "nome": "São Paulo",             "lat": -23.5505, "lon": -46.6333, "populacao": 11451999},
+  {"codigo_ibge": "3518800", "nome": "Guarulhos",             "lat": -23.4543, "lon": -46.5333, "populacao": 1291771},
+  {"codigo_ibge": "3534401", "nome": "Osasco",                "lat": -23.5329, "lon": -46.7916, "populacao": 728615},
+  {"codigo_ibge": "3547809", "nome": "Santo André",           "lat": -23.6639, "lon": -46.5383, "populacao": 748919},
+  {"codigo_ibge": "3548708", "nome": "São Bernardo do Campo", "lat": -23.6914, "lon": -46.5646, "populacao": 810729},
+  {"codigo_ibge": "3548807", "nome": "São Caetano do Sul",    "lat": -23.6229, "lon": -46.5548, "populacao": 165655},
+  {"codigo_ibge": "3529401", "nome": "Mauá",                  "lat": -23.6677, "lon": -46.4613, "populacao": 418261},
+  {"codigo_ibge": "3513801", "nome": "Diadema",               "lat": -23.6861, "lon": -46.6228, "populacao": 393237},
+  {"codigo_ibge": "3505708", "nome": "Barueri",               "lat": -23.5057, "lon": -46.8790, "populacao": 316473},
+  {"codigo_ibge": "3552809", "nome": "Taboão da Serra",       "lat": -23.6091, "lon": -46.7584, "populacao": 273542},
+  {"codigo_ibge": "3516408", "nome": "Franco da Rocha",       "lat": -23.3220, "lon": -46.7261, "populacao": 144849},
+  {"codigo_ibge": "3530607", "nome": "Mogi das Cruzes",       "lat": -23.5208, "lon": -46.1854, "populacao": 451505}
+]

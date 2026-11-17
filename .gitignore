@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+*.tmp
+.env
+# estado e cache de execução local (não versionar)
+dados/cache/
+dados/estado/

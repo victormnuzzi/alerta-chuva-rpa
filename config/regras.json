@@ -1,0 +1,22 @@
+{
+  "janela_horas": 24,
+  "niveis": [
+    {"nivel": "Baixo",       "ordem": 0, "min_mm_24h": 0},
+    {"nivel": "Moderado",    "ordem": 1, "min_mm_24h": 5},
+    {"nivel": "Forte",       "ordem": 2, "min_mm_24h": 20},
+    {"nivel": "Muito forte", "ordem": 3, "min_mm_24h": 50}
+  ],
+  "escalonamento_intensidade": {
+    "descricao": "Chuva concentrada: se a maior chuva em 1 hora atingir o limite, o nível sobe para pelo menos 'Forte'.",
+    "max_1h_mm": 15,
+    "nivel_minimo": "Forte"
+  },
+  "niveis_que_notificam": ["Forte", "Muito forte"],
+  "api": {
+    "url": "https://api.open-meteo.com/v1/forecast",
+    "timeout_s": 10,
+    "tentativas": 3,
+    "espera_inicial_s": 0.5
+  },
+  "cache_validade_horas": 6
+}

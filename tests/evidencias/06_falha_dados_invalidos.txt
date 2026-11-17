@@ -1,0 +1,37 @@
+$ python executar.py --cenario dados-invalidos
+2026-11-17 01:09:19 | INFO    | [INICIO_EXECUCAO] cenario=dados-invalidos simular_falha_api=False referencia=2026-11-17T01:00
+2026-11-17 01:09:19 | INFO    | [INSCRICOES_CARREGADAS] validos=256 rejeitados={'sem_consentimento': 11, 'email_invalido': 6, 'telefone_invalido': 15, 'inscricao_inativa': 5, 'duplicado': 3, 'linha_nao_json': 1, 'municipio_nao_monitorado': 8}
+2026-11-17 01:09:19 | INFO    | [MUNICIPIO_PROCESSADO] municipio=São Paulo fonte=fixture chuva_24h_mm=62.0 max_1h_mm=9.1 nivel_alerta=Muito forte motivo=acumulado 62.0 mm >= 50 mm decisao=NOTIFICAR enviadas=0 ja_avisados=167
+2026-11-17 01:09:19 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Guarulhos fonte=fixture chuva_24h_mm=36.0 max_1h_mm=5.3 nivel_alerta=Forte motivo=acumulado 36.0 mm >= 20 mm decisao=NOTIFICAR enviadas=0 ja_avisados=12
+2026-11-17 01:09:19 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Osasco fonte=fixture chuva_24h_mm=11.8 max_1h_mm=1.7 nivel_alerta=Moderado motivo=acumulado 11.8 mm >= 5 mm decisao=SEM_ALERTA
+2026-11-17 01:09:19 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Santo André fonte=fixture chuva_24h_mm=1.0 max_1h_mm=0.2 nivel_alerta=Baixo motivo=acumulado 1.0 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 01:09:19 | INFO    | [MUNICIPIO_PROCESSADO] municipio=São Bernardo do Campo fonte=fixture chuva_24h_mm=1.0 max_1h_mm=0.2 nivel_alerta=Baixo motivo=acumulado 1.0 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 01:09:19 | INFO    | [MUNICIPIO_PROCESSADO] municipio=São Caetano do Sul fonte=fixture chuva_24h_mm=3.8 max_1h_mm=0.6 nivel_alerta=Baixo motivo=acumulado 3.8 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 01:09:19 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Mauá fonte=fixture chuva_24h_mm=1.0 max_1h_mm=0.2 nivel_alerta=Baixo motivo=acumulado 1.0 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 01:09:19 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Diadema fonte=fixture chuva_24h_mm=17.2 max_1h_mm=16.0 nivel_alerta=Forte motivo=escalonado: 16.0 mm em 1 h >= 15 mm decisao=NOTIFICAR enviadas=0 ja_avisados=4
+2026-11-17 01:09:19 | WARNING | [CLIMA_FALHA] municipio=Barueri tipo_erro=DadosClimaInvalidos detalhe=valor fora da faixa física (0 a 200 mm/h): -5.0
+2026-11-17 01:09:19 | ERROR   | [MUNICIPIO_SEM_DADOS] municipio=Barueri detalhe=valor fora da faixa física (0 a 200 mm/h): -5.0
+2026-11-17 01:09:19 | WARNING | [CLIMA_FALHA] municipio=Taboão da Serra tipo_erro=DadosClimaInvalidos detalhe=6 horas sem valor (máximo tolerado: 2)
+2026-11-17 01:09:19 | ERROR   | [MUNICIPIO_SEM_DADOS] municipio=Taboão da Serra detalhe=6 horas sem valor (máximo tolerado: 2)
+2026-11-17 01:09:19 | WARNING | [CLIMA_FALHA] municipio=Franco da Rocha tipo_erro=ClimaIndisponivel detalhe=município ausente no arquivo de cenário
+2026-11-17 01:09:19 | ERROR   | [MUNICIPIO_SEM_DADOS] municipio=Franco da Rocha detalhe=município ausente no arquivo de cenário
+2026-11-17 01:09:19 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Mogi das Cruzes fonte=fixture chuva_24h_mm=2.1 max_1h_mm=0.4 nivel_alerta=Baixo motivo=acumulado 2.1 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 01:09:19 | INFO    | [PAINEL_PUBLICADO] arquivo=saida/painel_alertas.json municipios_em_alerta=3
+2026-11-17 01:09:19 | WARNING | [FIM_EXECUCAO] execucao_id=20261117T010919-1fb165 inicio=2026-11-17T01:09:19 fim=2026-11-17T01:09:19 duracao_s=0.03 status=PARCIAL municipios_processados=12 municipios_com_erro=3 municipios_via_cache=0 alertas_emitidos=3 inscritos_validos=256 inscritos_rejeitados=49 notificacoes_enviadas=0 notificacoes_ignoradas_duplicadas=183 total_erros=3
+
+===== RESUMO DA EXECUÇÃO =====
+execucao_id                         20261117T010919-1fb165
+inicio                              2026-11-17T01:09:19
+fim                                 2026-11-17T01:09:19
+duracao_s                           0.03
+status                              PARCIAL
+municipios_processados              12
+municipios_com_erro                 3
+municipios_via_cache                0
+alertas_emitidos                    3
+inscritos_validos                   256
+inscritos_rejeitados                49
+notificacoes_enviadas               0
+notificacoes_ignoradas_duplicadas   183
+total_erros                         3
+(código de saída: 1)
