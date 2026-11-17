@@ -1,13 +1,13 @@
 """Regras para classificar o nivel de alerta."""
 
 
-def classificar(chuva_24h_mm: float, max_1h_mm: float, regras: dict) -> tuple[str, str]:
+def classificar(chuva_24h_mm, max_1h_mm, regras):
     """Devolve (nivel, motivo).
 
     1) Nível pelo acumulado previsto em 24 h (maior faixa cujo mínimo foi atingido).
     2) Escalonamento: chuva concentrada em 1 h sobe o nível para no mínimo 'Forte'.
     """
-    niveis = sorted(regras["niveis"], key=lambda n: n["ordem"])
+    niveis = regras["niveis"]  # no json ja estao do menor para o maior
     escolhido = niveis[0]
     for faixa in niveis:  # repetição sobre as faixas
         if chuva_24h_mm >= faixa["min_mm_24h"]:  # decisão
@@ -23,12 +23,12 @@ def classificar(chuva_24h_mm: float, max_1h_mm: float, regras: dict) -> tuple[st
     return escolhido["nivel"], motivo
 
 
-def ordem_do_nivel(nivel: str, regras: dict) -> int:
+def ordem_do_nivel(nivel, regras):
     for n in regras["niveis"]:
         if n["nivel"] == nivel:
             return n["ordem"]
     return -1
 
 
-def deve_notificar(nivel: str, regras: dict) -> bool:
+def deve_notificar(nivel, regras):
     return nivel in regras["niveis_que_notificam"]

@@ -4,6 +4,7 @@ Saida: 0 = sucesso, 1 = parcial (teve erro tratado), 2 = falha (config quebrada)
 """
 import json
 import os
+import time
 import urllib.error
 from datetime import datetime
 
@@ -36,18 +37,22 @@ def _gravar_atomico(caminho, conteudo):
 def executar(base_dir, cenario="real", simular_falha_api=False, arquivo_inscricoes=None,
              agora=None, buscar_json=None, dormir=None, console=True):
     agora = (agora or datetime.now()).replace(minute=0, second=0, microsecond=0)
-    p = lambda *partes: os.path.join(base_dir, *partes)
-    aud = Auditoria(p("logs"), console=console)
+
+    def caminho(*partes):
+        # monta o caminho de um arquivo dentro da pasta do projeto
+        return os.path.join(base_dir, *partes)
+
+    aud = Auditoria(caminho("logs"), console=console)
     aud.evento("INICIO_EXECUCAO", cenario=cenario, simular_falha_api=simular_falha_api,
                referencia=agora.isoformat(timespec="minutes"))
 
     # Configuração
     try:
-        municipios = _ler_json(p("config", "municipios.json"))
-        regras = _ler_json(p("config", "regras.json"))
+        municipios = _ler_json(caminho("config", "municipios.json"))
+        regras = _ler_json(caminho("config", "regras.json"))
         if cenario not in CENARIOS:
             raise ValueError(f"cenário desconhecido: {cenario}")
-        fixture = None if cenario == "real" else _ler_json(p("dados", "cenarios", f"{cenario}.json"))
+        fixture = None if cenario == "real" else _ler_json(caminho("dados", "cenarios", f"{cenario}.json"))
     except (OSError, ValueError) as e:
         aud.evento("CONFIG_INVALIDA", "CRITICAL", erro=type(e).__name__, detalhe=str(e))
         return 2, aud.finalizar("FALHA")
@@ -57,7 +62,7 @@ def executar(base_dir, cenario="real", simular_falha_api=False, arquivo_inscrico
     inscritos = None
     try:
         inscritos, rejeitados = carregar_inscritos(
-            arquivo_inscricoes or p("dados", "entrada", "inscricoes.jsonl"), codigos)
+            arquivo_inscricoes or caminho("dados", "entrada", "inscricoes.jsonl"), codigos)
         aud.contar("inscritos_validos", len(inscritos))
         aud.contar("inscritos_rejeitados", sum(rejeitados.values()))
         aud.evento("INSCRICOES_CARREGADAS", validos=len(inscritos), rejeitados=dict(rejeitados))
@@ -68,10 +73,11 @@ def executar(base_dir, cenario="real", simular_falha_api=False, arquivo_inscrico
     # Coleta + decisão por município
     if buscar_json is None:
         buscar_json = _falha_simulada if simular_falha_api else buscar_json_http
-    kwargs = {"dormir": dormir} if dormir else {}
-    coletor = ColetorClima(regras, p("dados", "cache"), aud, buscar_json=buscar_json,
-                           fixture=fixture, **kwargs)
-    notificador = Notificador(p("dados", "estado"), p("saida"), regras, aud, aud.execucao_id)
+    if dormir is None:
+        dormir = time.sleep
+    coletor = ColetorClima(regras, caminho("dados", "cache"), aud, buscar_json=buscar_json,
+                           fixture=fixture, dormir=dormir)
+    notificador = Notificador(caminho("dados", "estado"), caminho("saida"), regras, aud, aud.execucao_id)
     data_ref = agora.strftime("%Y-%m-%d")
     linhas = []
 
@@ -135,7 +141,7 @@ def executar(base_dir, cenario="real", simular_falha_api=False, arquivo_inscrico
         "municipios": linhas,
     }
     try:
-        _gravar_atomico(p("saida", "painel_alertas.json"), painel)
+        _gravar_atomico(caminho("saida", "painel_alertas.json"), painel)
         aud.evento("PAINEL_PUBLICADO", arquivo="saida/painel_alertas.json",
                    municipios_em_alerta=len(em_alerta))
     except OSError as e:

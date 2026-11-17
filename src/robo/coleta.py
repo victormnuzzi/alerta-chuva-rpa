@@ -16,13 +16,13 @@ class DadosClimaInvalidos(Exception):
     """Resposta chegou, mas os dados não passam na validação."""
 
 
-def buscar_json_http(url: str, timeout: float) -> dict:
+def buscar_json_http(url, timeout):
     req = urllib.request.Request(url, headers={"User-Agent": "rpa-alerta-chuva/1.0"})
     with urllib.request.urlopen(req, timeout=timeout) as resp:
         return json.loads(resp.read().decode("utf-8"))
 
 
-def validar_horas(horas, janela: int) -> list[float]:
+def validar_horas(horas, janela):
     """Regras de qualidade da série horária de chuva."""
     if not isinstance(horas, list) or len(horas) < janela:
         raise DadosClimaInvalidos(f"esperadas {janela} horas, recebidas {len(horas) if isinstance(horas, list) else 0}")
@@ -35,7 +35,7 @@ def validar_horas(horas, janela: int) -> list[float]:
         if h is None:
             limpas.append(0.0)
             continue
-        if not isinstance(h, (int, float)) or isinstance(h, bool):
+        if not isinstance(h, (int, float)):
             raise DadosClimaInvalidos(f"valor não numérico: {h!r}")
         if h < 0 or h > 200:
             raise DadosClimaInvalidos(f"valor fora da faixa física (0 a 200 mm/h): {h}")
@@ -45,7 +45,7 @@ def validar_horas(horas, janela: int) -> list[float]:
 
 class ColetorClima:
     def __init__(self, regras, pasta_cache, auditoria, buscar_json=buscar_json_http,
-                 fixture: dict | None = None, dormir=time.sleep):
+                 fixture=None, dormir=time.sleep):
         self.cfg = regras["api"]
         self.janela = regras["janela_horas"]
         self.validade_cache = timedelta(hours=regras["cache_validade_horas"])
@@ -57,7 +57,7 @@ class ColetorClima:
         os.makedirs(pasta_cache, exist_ok=True)
 
     # Público
-    def obter(self, municipio: dict, agora: datetime) -> dict:
+    def obter(self, municipio, agora):
         """Retorna {'horas': [...24 valores...], 'fonte': 'api'|'fixture'|'cache'}."""
         cod = municipio["codigo_ibge"]
         try:

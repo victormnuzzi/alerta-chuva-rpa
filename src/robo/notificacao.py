@@ -36,7 +36,7 @@ class Notificador:
             json.dump(self.estado, f, ensure_ascii=False, indent=1)
         os.replace(tmp, self.arq_estado)
 
-    def notificar_municipio(self, municipio, nivel, chuva_24h, inscritos, data_ref) -> tuple[int, int]:
+    def notificar_municipio(self, municipio, nivel, chuva_24h, inscritos, data_ref):
         """Retorna (enviadas, ignoradas_por_duplicidade)."""
         enviadas = ignoradas = 0
         ordem = ordem_do_nivel(nivel, self.regras)

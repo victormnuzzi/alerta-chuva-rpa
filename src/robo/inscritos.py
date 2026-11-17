@@ -2,7 +2,6 @@
 import json
 import os
 import re
-from collections import Counter
 
 from .lgpd import hash_email, mascarar_telefone
 
@@ -14,7 +13,7 @@ class ArquivoInscricoesAusente(Exception):
     pass
 
 
-def _motivo_invalido(reg: dict, codigos_monitorados: set) -> str | None:
+def _motivo_invalido(reg, codigos_monitorados):
     faltando = [c for c in CAMPOS if c not in reg]
     if faltando:
         return "campos_ausentes"
@@ -33,7 +32,7 @@ def _motivo_invalido(reg: dict, codigos_monitorados: set) -> str | None:
     return None
 
 
-def carregar_inscritos(caminho: str, codigos_monitorados: set) -> tuple[list[dict], Counter]:
+def carregar_inscritos(caminho, codigos_monitorados):
     """Devolve (inscritos_validos_protegidos, contagem_de_rejeicoes_por_motivo).
 
     Cada inscrito válido já sai protegido: e-mail vira hash e telefone é mascarado.
@@ -41,7 +40,9 @@ def carregar_inscritos(caminho: str, codigos_monitorados: set) -> tuple[list[dic
     if not os.path.exists(caminho):
         raise ArquivoInscricoesAusente(f"arquivo não encontrado: {os.path.basename(caminho)}")
 
-    validos, rejeitados, vistos = [], Counter(), set()
+    validos = []
+    rejeitados = {}  # motivo -> quantidade
+    vistos = set()
     with open(caminho, encoding="utf-8") as f:
         for linha in f:  # repetição: lote de inscrições
             linha = linha.strip()
@@ -50,19 +51,19 @@ def carregar_inscritos(caminho: str, codigos_monitorados: set) -> tuple[list[dic
             try:
                 reg = json.loads(linha)
             except json.JSONDecodeError:
-                rejeitados["linha_nao_json"] += 1
+                rejeitados["linha_nao_json"] = rejeitados.get("linha_nao_json", 0) + 1
                 continue
             if not isinstance(reg, dict):
-                rejeitados["linha_nao_json"] += 1
+                rejeitados["linha_nao_json"] = rejeitados.get("linha_nao_json", 0) + 1
                 continue
             motivo = _motivo_invalido(reg, codigos_monitorados)  # decisão
             if motivo:
-                rejeitados[motivo] += 1
+                rejeitados[motivo] = rejeitados.get(motivo, 0) + 1
                 continue
             email_h = hash_email(reg["email"])
             chave = (email_h, str(reg["codigo_ibge"]))
             if chave in vistos:
-                rejeitados["duplicado"] += 1
+                rejeitados["duplicado"] = rejeitados.get("duplicado", 0) + 1
                 continue
             vistos.add(chave)
             validos.append({

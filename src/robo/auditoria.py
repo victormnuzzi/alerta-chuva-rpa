@@ -3,7 +3,6 @@ import csv
 import logging
 import os
 import uuid
-from collections import Counter
 from datetime import datetime
 
 from .lgpd import sanitizar_texto
@@ -16,13 +15,13 @@ class _FiltroLGPD(logging.Filter):
 
 
 class Auditoria:
-    def __init__(self, pasta_logs: str, agora: datetime | None = None, console: bool = True):
+    def __init__(self, pasta_logs, agora = None, console = True):
         self.pasta = pasta_logs
         os.makedirs(self.pasta, exist_ok=True)
         self.inicio = agora or datetime.now()
         self.execucao_id = self.inicio.strftime("%Y%m%dT%H%M%S") + "-" + uuid.uuid4().hex[:6]
-        self.contadores = Counter()
-        self.erros: list[str] = []
+        self.contadores = {}
+        self.erros = []
 
         self.log = logging.getLogger(f"robo.{self.execucao_id}")
         self.log.setLevel(logging.INFO)
@@ -40,17 +39,24 @@ class Auditoria:
             tela.addFilter(_FiltroLGPD())
             self.log.addHandler(tela)
 
-    def evento(self, tipo: str, nivel: str = "INFO", **dados):
+    def evento(self, tipo, nivel = "INFO", **dados):
         # escreve uma linha no log, ex: [MUNICIPIO_PROCESSADO] municipio=Osasco nivel_alerta=Baixo
         texto = f"[{tipo}] " + " ".join(f"{k}={v}" for k, v in dados.items())
-        getattr(self.log, nivel.lower(), self.log.info)(texto)
+        if nivel == "ERROR":
+            self.log.error(texto)
+        elif nivel == "CRITICAL":
+            self.log.critical(texto)
+        elif nivel == "WARNING":
+            self.log.warning(texto)
+        else:
+            self.log.info(texto)
         if nivel in ("ERROR", "CRITICAL"):
             self.erros.append(texto)
 
-    def contar(self, chave: str, n: int = 1):
-        self.contadores[chave] += n
+    def contar(self, chave, n = 1):
+        self.contadores[chave] = self.contadores.get(chave, 0) + n
 
-    def finalizar(self, status: str) -> dict:
+    def finalizar(self, status):
         fim = datetime.now()
         resumo = {
             "execucao_id": self.execucao_id,
@@ -58,14 +64,14 @@ class Auditoria:
             "fim": fim.isoformat(timespec="seconds"),
             "duracao_s": round((fim - self.inicio).total_seconds(), 2),
             "status": status,
-            "municipios_processados": self.contadores["municipios_processados"],
-            "municipios_com_erro": self.contadores["municipios_com_erro"],
-            "municipios_via_cache": self.contadores["municipios_via_cache"],
-            "alertas_emitidos": self.contadores["alertas_emitidos"],
-            "inscritos_validos": self.contadores["inscritos_validos"],
-            "inscritos_rejeitados": self.contadores["inscritos_rejeitados"],
-            "notificacoes_enviadas": self.contadores["notificacoes_enviadas"],
-            "notificacoes_ignoradas_duplicadas": self.contadores["notificacoes_duplicadas"],
+            "municipios_processados": self.contadores.get("municipios_processados", 0),
+            "municipios_com_erro": self.contadores.get("municipios_com_erro", 0),
+            "municipios_via_cache": self.contadores.get("municipios_via_cache", 0),
+            "alertas_emitidos": self.contadores.get("alertas_emitidos", 0),
+            "inscritos_validos": self.contadores.get("inscritos_validos", 0),
+            "inscritos_rejeitados": self.contadores.get("inscritos_rejeitados", 0),
+            "notificacoes_enviadas": self.contadores.get("notificacoes_enviadas", 0),
+            "notificacoes_ignoradas_duplicadas": self.contadores.get("notificacoes_duplicadas", 0),
             "total_erros": len(self.erros),
         }
         caminho = os.path.join(self.pasta, "execucoes.csv")
