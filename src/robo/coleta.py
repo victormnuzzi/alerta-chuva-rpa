@@ -1,4 +1,4 @@
-"""Coleta da previsão de chuva (Open-Meteo) com retry, validação e cache."""
+"""Busca a previsao de chuva na Open-Meteo (com retry e cache)."""
 import json
 import os
 import time
@@ -56,7 +56,7 @@ class ColetorClima:
         self.dormir = dormir
         os.makedirs(pasta_cache, exist_ok=True)
 
-    # --------------------------------------------------------------- público
+    # Público
     def obter(self, municipio: dict, agora: datetime) -> dict:
         """Retorna {'horas': [...24 valores...], 'fonte': 'api'|'fixture'|'cache'}."""
         cod = municipio["codigo_ibge"]
@@ -79,7 +79,7 @@ class ColetorClima:
                 return {"horas": cache["horas"], "fonte": "cache"}
             raise
 
-    # --------------------------------------------------------------- fontes
+    # Fontes
     def _da_fixture(self, cod):
         if cod not in self.fixture:
             raise ClimaIndisponivel("município ausente no arquivo de cenário")
@@ -93,7 +93,7 @@ class ColetorClima:
         url = f"{self.cfg['url']}?{params}"
         espera = self.cfg["espera_inicial_s"]
         ultimo_erro = None
-        for tentativa in range(1, self.cfg["tentativas"] + 1):   # retry com backoff
+        for tentativa in range(1, self.cfg["tentativas"] + 1):  # retry com backoff
             try:
                 dados = self.buscar_json(url, self.cfg["timeout_s"])
                 return self._recortar_janela(dados, agora)
@@ -122,7 +122,7 @@ class ColetorClima:
         i = tempos.index(chave)
         return chuva[i:i + self.janela]
 
-    # --------------------------------------------------------------- cache
+    # Cache
     def _arq_cache(self, cod):
         return os.path.join(self.pasta_cache, f"clima_{cod}.json")
 

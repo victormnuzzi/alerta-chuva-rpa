@@ -1,4 +1,4 @@
-"""Geração e envio (simulado) das notificações, sem duplicar avisos."""
+"""Gera as notificacoes (envio simulado) sem mandar aviso repetido."""
 import json
 import os
 import urllib.request
@@ -46,9 +46,9 @@ class Notificador:
                     f"nas próximas 24 h ({chuva_24h:.0f} mm). Evite áreas de alagamento. "
                     f"Emergências: Defesa Civil 199.")
         with open(arq, "a", encoding="utf-8") as f:
-            for insc in inscritos:                                  # repetição
+            for insc in inscritos:  # repetição
                 chave = f"{insc['id_inscricao']}|{municipio['codigo_ibge']}|{data_ref}"
-                if self.estado.get(chave, -1) >= ordem:             # decisão: já avisado
+                if self.estado.get(chave, -1) >= ordem:  # decisão: já avisado
                     ignoradas += 1
                     continue
                 f.write(json.dumps({

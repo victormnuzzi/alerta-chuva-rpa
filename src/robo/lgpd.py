@@ -1,8 +1,4 @@
-"""Funções de proteção de dados pessoais (LGPD).
-
-Nenhum dado pessoal sai do robô em claro: logs, painel e notificações
-usam apenas as formas protegidas geradas aqui.
-"""
+"""Funcoes de LGPD: hash do email, mascara do telefone/nome e limpeza dos logs."""
 import hashlib
 import os
 import re

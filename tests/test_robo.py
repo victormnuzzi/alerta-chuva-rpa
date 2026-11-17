@@ -64,7 +64,7 @@ class Base(unittest.TestCase):
         return texto
 
 
-# ============================================================ SUCESSO
+# Sucesso
 class TestSucesso(Base):
     def test_cenario_seco_gera_painel_sem_alertas(self):
         codigo, resumo = self.rodar(cenario="seco")
@@ -89,7 +89,7 @@ class TestSucesso(Base):
         datetime.fromisoformat(evento["data_hora"])  # data/hora válida
 
 
-# ============================================================ DECISÃO
+# Decisão
 class TestDecisao(Base):
     def test_classificacao_por_acumulado(self):
         self.assertEqual(classificar(3, 1, REGRAS)[0], "Baixo")
@@ -125,7 +125,7 @@ class TestDecisao(Base):
         self.assertEqual(r2["notificacoes_ignoradas_duplicadas"], r1["notificacoes_enviadas"])
 
 
-# ============================================================ FALHA
+# Falha
 class TestFalha(Base):
     def test_api_fora_do_ar_faz_retry_e_nao_quebra(self):
         chamadas = []
@@ -135,13 +135,13 @@ class TestFalha(Base):
             raise urllib.error.URLError("sem rede")
 
         codigo, resumo = self.rodar(cenario="real", buscar_json=falha)
-        self.assertEqual(codigo, 1)                       # PARCIAL, não silencioso
-        self.assertEqual(len(chamadas), 12 * 3)           # 3 tentativas por município
+        self.assertEqual(codigo, 1)  # PARCIAL, não silencioso
+        self.assertEqual(len(chamadas), 12 * 3)  # 3 tentativas por município
         self.assertEqual(resumo["municipios_com_erro"], 12)
         self.assertTrue(all(m["nivel"] == "Sem dados" for m in self.painel()["municipios"]))
 
     def test_api_fora_do_ar_usa_cache_recente(self):
-        self.rodar(cenario="real", buscar_json=lambda u, t: resposta_api(2.0))   # popula cache
+        self.rodar(cenario="real", buscar_json=lambda u, t: resposta_api(2.0))  # popula cache
         codigo, resumo = self.rodar(cenario="real",
                                     buscar_json=lambda u, t: (_ for _ in ()).throw(TimeoutError()))
         self.assertEqual(resumo["municipios_via_cache"], 12)
@@ -155,14 +155,14 @@ class TestFalha(Base):
             raise urllib.error.HTTPError(url, 404, "Not Found", None, None)
 
         self.rodar(cenario="real", buscar_json=nao_encontrado)
-        self.assertEqual(len(chamadas), 12)               # 1 tentativa por município
+        self.assertEqual(len(chamadas), 12)  # 1 tentativa por município
 
     def test_dados_invalidos_isolados_por_municipio(self):
         codigo, resumo = self.rodar(cenario="dados-invalidos")
         self.assertEqual(codigo, 1)
         self.assertEqual(resumo["municipios_com_erro"], 3)
         processados = [m for m in self.painel()["municipios"] if m["fonte"] != "indisponivel"]
-        self.assertEqual(len(processados), 9)             # os outros 9 seguem normalmente
+        self.assertEqual(len(processados), 9)  # os outros 9 seguem normalmente
 
     def test_validacao_rejeita_valor_negativo(self):
         with self.assertRaises(DadosClimaInvalidos):
@@ -188,7 +188,7 @@ class TestFalha(Base):
                 "codigo_ibge": "3550308", "canal": "sms", "aceite_lgpd": True}
         with open(arq, "w", encoding="utf-8") as f:
             f.write(json.dumps(base) + "\n")
-            f.write(json.dumps(dict(base, id_inscricao="2")) + "\n")             # duplicada
+            f.write(json.dumps(dict(base, id_inscricao="2")) + "\n")  # duplicada
             f.write(json.dumps(dict(base, id_inscricao="3", email="x")) + "\n")  # e-mail inválido
             f.write("{quebrada\n")
         validos, rej = carregar_inscritos(arq, {"3550308"})
@@ -198,7 +198,7 @@ class TestFalha(Base):
         self.assertEqual(rej["linha_nao_json"], 1)
 
 
-# ============================================================ LGPD
+# LGPD
 class TestLGPD(Base):
     def test_mascaras(self):
         self.assertEqual(mascarar_telefone("(11) 98765-4321"), "(11) *****-4321")

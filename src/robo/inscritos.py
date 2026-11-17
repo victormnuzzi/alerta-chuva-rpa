@@ -1,4 +1,4 @@
-"""Leitura e validação das inscrições de cidadãos (arquivo JSONL)."""
+"""Le e valida as inscricoes (arquivo jsonl)."""
 import json
 import os
 import re
@@ -43,7 +43,7 @@ def carregar_inscritos(caminho: str, codigos_monitorados: set) -> tuple[list[dic
 
     validos, rejeitados, vistos = [], Counter(), set()
     with open(caminho, encoding="utf-8") as f:
-        for linha in f:                                    # repetição: lote de inscrições
+        for linha in f:  # repetição: lote de inscrições
             linha = linha.strip()
             if not linha:
                 continue
@@ -55,7 +55,7 @@ def carregar_inscritos(caminho: str, codigos_monitorados: set) -> tuple[list[dic
             if not isinstance(reg, dict):
                 rejeitados["linha_nao_json"] += 1
                 continue
-            motivo = _motivo_invalido(reg, codigos_monitorados)   # decisão
+            motivo = _motivo_invalido(reg, codigos_monitorados)  # decisão
             if motivo:
                 rejeitados[motivo] += 1
                 continue

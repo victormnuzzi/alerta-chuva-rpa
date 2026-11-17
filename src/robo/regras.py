@@ -1,4 +1,4 @@
-"""Regras de negócio: classificação do nível de alerta."""
+"""Regras para classificar o nivel de alerta."""
 
 
 def classificar(chuva_24h_mm: float, max_1h_mm: float, regras: dict) -> tuple[str, str]:
@@ -9,7 +9,7 @@ def classificar(chuva_24h_mm: float, max_1h_mm: float, regras: dict) -> tuple[st
     """
     niveis = sorted(regras["niveis"], key=lambda n: n["ordem"])
     escolhido = niveis[0]
-    for faixa in niveis:                       # repetição sobre as faixas
+    for faixa in niveis:  # repetição sobre as faixas
         if chuva_24h_mm >= faixa["min_mm_24h"]:  # decisão
             escolhido = faixa
     motivo = f"acumulado {chuva_24h_mm:.1f} mm >= {escolhido['min_mm_24h']} mm"

@@ -1,10 +1,10 @@
-"""Ponto de entrada do robô.
+"""Roda o robo.
 
 Exemplos:
-  python executar.py                          # previsão real (Open-Meteo)
-  python executar.py --cenario chuva-forte    # demonstra a decisão de alerta
-  python executar.py --simular-falha-api      # demonstra retry + cache + falha tratada
-  python executar.py --inscricoes nao_existe.jsonl   # demonstra arquivo ausente
+  python executar.py
+  python executar.py --cenario chuva-forte
+  python executar.py --simular-falha-api
+  python executar.py --inscricoes nao_existe.jsonl
 """
 import argparse
 import os
@@ -17,7 +17,7 @@ from robo.main import CENARIOS, executar  # noqa: E402
 
 
 def main():
-    for fluxo in (sys.stdout, sys.stderr):      # acentos corretos no Windows, inclusive com '>' para arquivo
+    for fluxo in (sys.stdout, sys.stderr):  # acentos corretos no Windows, inclusive com '>' para arquivo
         fluxo.reconfigure(encoding="utf-8", errors="replace")
     ap = argparse.ArgumentParser(description="Robô RPA - Alerta Chuva SP")
     ap.add_argument("--cenario", choices=CENARIOS, default="real",

@@ -1,11 +1,4 @@
-"""Logs e trilha de auditoria do robô.
-
-Três saídas:
-  logs/robo_AAAA-MM-DD.log  -> log legível (data/hora, nível, mensagem)
-  logs/auditoria.jsonl      -> um evento estruturado por linha (para máquina)
-  logs/execucoes.csv        -> uma linha-resumo por execução
-Todo texto passa por sanitizar_texto() antes de ser gravado (LGPD).
-"""
+"""Logs do robo: log normal, auditoria.jsonl (um evento por linha) e execucoes.csv (resumo)."""
 import csv
 import json
 import logging
@@ -48,7 +41,7 @@ class Auditoria:
             tela.addFilter(_FiltroLGPD())
             self.log.addHandler(tela)
 
-    # ------------------------------------------------------------------ eventos
+    # Eventos
     def evento(self, tipo: str, nivel: str = "INFO", **dados):
         """Registra um evento no log legível e no JSONL de auditoria."""
         dados_limpos = {k: sanitizar_texto(str(v)) if isinstance(v, str) else v for k, v in dados.items()}
@@ -70,7 +63,7 @@ class Auditoria:
     def contar(self, chave: str, n: int = 1):
         self.contadores[chave] += n
 
-    # ------------------------------------------------------------------ resumo
+    # Resumo
     def finalizar(self, status: str) -> dict:
         fim = datetime.now()
         resumo = {

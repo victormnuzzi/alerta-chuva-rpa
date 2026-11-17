@@ -1,10 +1,6 @@
-"""Orquestrador do robô Alerta Chuva SP.
+"""Fluxo principal do robo.
 
-Fluxo: carregar config -> carregar inscritos -> para cada município
-(coletar previsão -> validar -> classificar -> decidir -> notificar)
--> publicar painel para o MVP -> registrar resumo de auditoria.
-
-Códigos de saída: 0 = SUCESSO, 1 = PARCIAL (houve erros tratados), 2 = FALHA (erro fatal).
+Saida: 0 = sucesso, 1 = parcial (teve erro tratado), 2 = falha (config quebrada).
 """
 import json
 import os
@@ -45,7 +41,7 @@ def executar(base_dir, cenario="real", simular_falha_api=False, arquivo_inscrico
     aud.evento("INICIO_EXECUCAO", cenario=cenario, simular_falha_api=simular_falha_api,
                referencia=agora.isoformat(timespec="minutes"))
 
-    # 1) Configuração -------------------------------------------------------------
+    # Configuração
     try:
         municipios = _ler_json(p("config", "municipios.json"))
         regras = _ler_json(p("config", "regras.json"))
@@ -56,7 +52,7 @@ def executar(base_dir, cenario="real", simular_falha_api=False, arquivo_inscrico
         aud.evento("CONFIG_INVALIDA", "CRITICAL", erro=type(e).__name__, detalhe=str(e))
         return 2, aud.finalizar("FALHA")
 
-    # 2) Inscrições -----------------------------------------------------------------
+    # Inscrições
     codigos = {m["codigo_ibge"] for m in municipios}
     inscritos = None
     try:
@@ -69,7 +65,7 @@ def executar(base_dir, cenario="real", simular_falha_api=False, arquivo_inscrico
         aud.evento("INSCRICOES_AUSENTES", "ERROR", detalhe=str(e),
                    consequencia="painel será gerado, notificações bloqueadas")
 
-    # 3) Coleta + decisão por município ---------------------------------------------
+    # Coleta + decisão por município
     if buscar_json is None:
         buscar_json = _falha_simulada if simular_falha_api else buscar_json_http
     kwargs = {"dormir": dormir} if dormir else {}
@@ -79,7 +75,7 @@ def executar(base_dir, cenario="real", simular_falha_api=False, arquivo_inscrico
     data_ref = agora.strftime("%Y-%m-%d")
     linhas = []
 
-    for mun in municipios:                                       # REPETIÇÃO
+    for mun in municipios:  # repetição
         aud.contar("municipios_processados")
         base = {"codigo_ibge": mun["codigo_ibge"], "municipio": mun["nome"], "populacao": mun["populacao"]}
         try:
@@ -100,7 +96,7 @@ def executar(base_dir, cenario="real", simular_falha_api=False, arquivo_inscrico
         do_municipio = [i for i in (inscritos or []) if i["codigo_ibge"] == mun["codigo_ibge"]]
         enviadas = 0
 
-        if deve_notificar(nivel, regras):                         # DECISÃO
+        if deve_notificar(nivel, regras):  # decisão
             aud.contar("alertas_emitidos")
             if inscritos is None:
                 decisao = "ALERTA_SEM_ENVIO (inscrições indisponíveis)"
@@ -121,7 +117,7 @@ def executar(base_dir, cenario="real", simular_falha_api=False, arquivo_inscrico
 
     notificador.salvar_estado()
 
-    # 4) Entrega ao MVP ---------------------------------------------------------------
+    # Entrega ao MVP
     em_alerta = [l for l in linhas if deve_notificar(l["nivel"], regras)]
     painel = {
         "gerado_em": datetime.now().isoformat(timespec="seconds"),
