@@ -1,15 +1,15 @@
 {
-  "gerado_em": "2026-11-17T16:18:14",
+  "gerado_em": "2026-11-17T16:56:35",
   "referencia": "2026-11-17T16:00",
   "janela_horas": 24,
-  "execucao_id": "20261117T161814-f834d7",
-  "cenario": "dados-invalidos",
+  "execucao_id": "20261117T165635-ef5bad",
+  "cenario": "chuva-forte",
   "resumo": {
     "municipios": 12,
     "municipios_em_alerta": 3,
     "populacao_em_alerta": 13137007,
-    "municipios_sem_dados": 3,
-    "notificacoes_enviadas": 0
+    "municipios_sem_dados": 0,
+    "notificacoes_enviadas": 183
   },
   "municipios": [
     {
@@ -22,7 +22,7 @@
       "motivo": "acumulado 62.0 mm >= 50 mm",
       "fonte": "fixture",
       "inscritos_ativos": 167,
-      "notificacoes_enviadas": 0
+      "notificacoes_enviadas": 167
     },
     {
       "codigo_ibge": "3518800",
@@ -34,7 +34,7 @@
       "motivo": "acumulado 36.0 mm >= 20 mm",
       "fonte": "fixture",
       "inscritos_ativos": 12,
-      "notificacoes_enviadas": 0
+      "notificacoes_enviadas": 12
     },
     {
       "codigo_ibge": "3534401",
@@ -106,42 +106,42 @@
       "motivo": "escalonado: 16.0 mm em 1 h >= 15 mm",
       "fonte": "fixture",
       "inscritos_ativos": 4,
-      "notificacoes_enviadas": 0
+      "notificacoes_enviadas": 4
     },
     {
       "codigo_ibge": "3505708",
       "municipio": "Barueri",
       "populacao": 316473,
-      "chuva_24h_mm": null,
-      "max_1h_mm": null,
-      "nivel": "Sem dados",
-      "motivo": "previsão indisponível",
-      "fonte": "indisponivel",
-      "inscritos_ativos": null,
+      "chuva_24h_mm": 4.0,
+      "max_1h_mm": 0.6,
+      "nivel": "Baixo",
+      "motivo": "acumulado 4.0 mm >= 0 mm",
+      "fonte": "fixture",
+      "inscritos_ativos": 6,
       "notificacoes_enviadas": 0
     },
     {
       "codigo_ibge": "3552809",
       "municipio": "Taboão da Serra",
       "populacao": 273542,
-      "chuva_24h_mm": null,
-      "max_1h_mm": null,
-      "nivel": "Sem dados",
-      "motivo": "previsão indisponível",
-      "fonte": "indisponivel",
-      "inscritos_ativos": null,
+      "chuva_24h_mm": 3.3,
+      "max_1h_mm": 0.5,
+      "nivel": "Baixo",
+      "motivo": "acumulado 3.3 mm >= 0 mm",
+      "fonte": "fixture",
+      "inscritos_ativos": 3,
       "notificacoes_enviadas": 0
     },
     {
       "codigo_ibge": "3516408",
       "municipio": "Franco da Rocha",
       "populacao": 144849,
-      "chuva_24h_mm": null,
-      "max_1h_mm": null,
-      "nivel": "Sem dados",
-      "motivo": "previsão indisponível",
-      "fonte": "indisponivel",
-      "inscritos_ativos": null,
+      "chuva_24h_mm": 0.5,
+      "max_1h_mm": 0.1,
+      "nivel": "Baixo",
+      "motivo": "acumulado 0.5 mm >= 0 mm",
+      "fonte": "fixture",
+      "inscritos_ativos": 4,
       "notificacoes_enviadas": 0
     },
     {
