@@ -4,7 +4,7 @@ import os
 import re
 
 _EMAIL_RE = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
-_TEL_RE = re.compile(r"\(?\d{2}\)?\s?9?\d{4}-?\d{4}")
+_TEL_RE = re.compile(r"(?<![\w-])\(?\d{2}\)?\s?9?\d{4}-?\d{4}(?!\w)")  # nao pega numero grudado em letra (ex: id da execucao)
 
 
 def _sal() -> str:
