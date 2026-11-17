@@ -15,7 +15,11 @@
 const viewer = new BpmnJS({ container: "#canvas" });
 fetch("processo_alerta_chuva.bpmn").then(r => r.text())
   .then(xml => viewer.importXML(xml))
-  .then(() => viewer.get("canvas").zoom("fit-viewport"))
+  .then(() => {
+    // ajusta o zoom para caber na tela (ignora se a janela ainda nao tem tamanho)
+    try { viewer.get("canvas").zoom("fit-viewport"); } catch (e) {}
+    window.addEventListener("resize", () => { try { viewer.get("canvas").zoom("fit-viewport"); } catch (e) {} });
+  })
   .catch(e => { document.getElementById("titulo").textContent = "Erro ao abrir o BPMN: " + e.message; });
 </script>
 </body>
