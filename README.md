@@ -1,155 +1,96 @@
-# Robô RPA: Alerta Chuva SP
+# Alerta Chuva SP - Robô RPA
 
-**Global Solution 2026.2 · CitizenTech · Robotic Process Automation · Engenharia de Software 4º ano**
+Global Solution 2026.2 - Robotic Process Automation - Engenharia de Software 4º ano
 
-Este robô automatiza o processo que hoje seria manual no **Alerta Chuva SP**: ver a previsão de chuva de cada município da Grande São Paulo, decidir se o risco é alto e avisar os cidadãos inscritos. Ele roda sozinho de hora em hora, trata as falhas sem parar o processo, registra tudo em log de auditoria e publica o resultado num arquivo JSON que o painel do MVP lê.
+## Integrantes
 
-| Integrante | RM |
-|---|---|
-| Cassio Valezzi | 551059 |
-| Gabriel Antony Cadima | 98215 |
-| Lucca Sabatini Tambellini | 98169 |
-| Victor Nuzzi | 98209 |
+- Cassio Valezzi - RM 551059
+- Gabriel Antony Cadima - RM 98215
+- Lucca Sabatini Tambellini - RM 98169
+- Victor Nuzzi - RM 98209
 
-**Vídeo:** _colocar link_
+Vídeo: _colocar link_
 
----
+## Sobre
 
-## O problema e o processo automatizado
+O Alerta Chuva SP avisa os moradores da Grande São Paulo quando vai chover forte na cidade deles.
 
-Sem o robô, alguém da equipe teria que, para **cada um dos 12 municípios**, consultar a previsão, somar a chuva das próximas 24 h, comparar com a tabela de níveis, filtrar os inscritos daquela cidade, conferir se já foram avisados e mandar a mensagem. Isso é repetitivo, lento e sujeito a erro, e o aviso precisa sair **antes** da chuva.
+Sem automação, alguém teria que olhar a previsão das 12 cidades toda hora, ver se a chuva é forte, separar os inscritos de cada cidade e mandar o aviso. O robô faz isso sozinho:
 
-| Etapa | Manual (antes) | Robô (agora) |
-|---|---|---|
-| Consultar previsão | Abrir site por cidade | Open-Meteo via API, com 3 tentativas e cache |
-| Classificar risco | Olhar tabela | Regra de negócio configurável (`config/regras.json`) |
-| Separar inscritos | Planilha | Validação, deduplicação e mascaramento automáticos |
-| Avisar | Mensagem por mensagem | Lote por município, sem repetir aviso |
-| Registro | Nenhum | Log com data e hora e CSV com o resumo de cada execução |
-| Atualizar o MVP | Editar à mão | `saida/painel_alertas.json` gravado de forma atômica |
+1. Lê a configuração (cidades e regras) e as inscrições
+2. Para cada cidade, busca a previsão das próximas 24 h na API da Open-Meteo
+3. Classifica o nível de alerta
+4. Se for Forte ou Muito forte, avisa os inscritos daquela cidade (envio simulado)
+5. Grava o resultado em `saida/painel_alertas.json`, que é lido pelo painel do MVP (`mvp/index.html`)
+6. Registra tudo em `logs/`
 
-## Arquitetura
+O fluxo em BPMN está em `docs/processo_alerta_chuva.bpmn` (dá para abrir no [bpmn.io](https://demo.bpmn.io)).
 
-```
-             ┌──────────────── a cada hora (Agendador de Tarefas) ─────────────────────┐
-             ▼                                                                         │
- config/ ─► Carregar configuração ─► Ler e validar inscrições (JSONL)                  │
-                                         │                                             │
-                                         ▼                                             │
-                    ┌──── para cada município (12) ────────────────────────┐           │
- Open-Meteo API ──► │ Coletar 24 h (retry+backoff) ─► válido? ─não─► cache?│           │
-                    │                                  │sim        sim/não │           │
-                    │                    Classificar nível ◄─────┘   └► "Sem dados"     │
-                    │                                  │                   │           │
-                    │                   Forte/Muito forte? ─sim─► Notificar (sem dup.) │
-                    └───────────────────────────────────────────────────────┘           │
-                                         ▼                                             │
-                saida/painel_alertas.json ──► MVP (mvp/index.html)                     │
-                saida/notificacoes/AAAA-MM-DD.jsonl                                    │
-                logs/ (robo_*.log · execucoes.csv) ──────────────────────────────────┘
-```
-
-O fluxo completo em BPMN 2.0 está em [docs/processo_alerta_chuva.bpmn](docs/processo_alerta_chuva.bpmn). Ele abre em [bpmn.io](https://demo.bpmn.io) ou na página [docs/ver_bpmn.html](docs/ver_bpmn.html).
-
-**Tecnologia:** Python 3.10+ **só com a biblioteca padrão** (não precisa de `pip install`). Escolhemos Python porque o código fica versionado no Git, roda em qualquer máquina e em CI, e pode ser testado automaticamente, o que não acontece com um fluxo em ferramenta visual.
-
-## Estrutura do repositório
-
-```
-executar.py                 ponto de entrada (linha de comando)
-src/robo/
-  main.py                   orquestração do fluxo
-  coleta.py                 Open-Meteo: retry, backoff, validação, cache
-  regras.py                 classificação do nível de alerta (decisões)
-  inscritos.py              leitura/validação/deduplicação das inscrições
-  notificacao.py            envio simulado e controle para não repetir aviso
-  auditoria.py              log e resumo CSV
-  lgpd.py                   hash, máscaras e limpeza de dados pessoais nos logs
-config/                     municípios (IBGE, Censo 2022) e regras de negócio
-dados/entrada/              inscrições SIMULADAS (com erros de propósito)
-dados/cenarios/             séries de chuva para demonstrar cada caminho
-mvp/index.html              painel do MVP que consome a saída do robô
-docs/                       fluxo BPMN do processo
-logs/                       amostras reais de log (sem dados sensíveis)
-saida/                      painel e notificações gerados
-tests/                      testes automatizados + evidências de execução
-assets/                     prints para o relatório
-```
+Feito em Python, só com a biblioteca padrão. Não precisa instalar nada.
 
 ## Como rodar
 
-```bash
-python executar.py                                   # previsão real (Open-Meteo)
-python executar.py --cenario chuva-forte             # demonstra a decisão de alerta
-python executar.py --simular-falha-api               # API fora do ar: retry e depois cache
-python executar.py --cenario dados-invalidos         # dados ruins isolados por município
-python executar.py --cenario chuva-forte --inscricoes nao_existe.jsonl   # arquivo ausente
-python -m unittest discover -s tests -v              # roda os testes
+```
+python executar.py                              # previsão real
+python executar.py --cenario chuva-forte        # simula um temporal
+python executar.py --simular-falha-api          # simula a API fora do ar
+python executar.py --cenario dados-invalidos    # simula dados com erro
+python -m unittest discover -s tests -v         # testes
 ```
 
-Para ver o MVP, abra um servidor local na raiz do projeto e acesse `http://localhost:8000/mvp/`:
+Para ver o painel do MVP:
 
-```bash
+```
 python -m http.server 8000
 ```
 
-**Códigos de saída:** `0` sucesso · `1` parcial (houve erros, todos tratados e registrados) · `2` falha fatal (configuração inválida).
+e abrir http://localhost:8000/mvp/
 
-**Variável de ambiente:** `RPA_HASH_SALT` (sal do hash de e-mail).
+## Regras
 
-## Regras de negócio
-
-| Nível | Chuva prevista em 24 h | Notifica? |
+| Nível | Chuva em 24 h | Avisa? |
 |---|---|---|
-| Baixo | < 5 mm | não |
-| Moderado | 5 a 19,9 mm | não |
-| Forte | 20 a 49,9 mm | **sim** |
-| Muito forte | ≥ 50 mm | **sim** |
+| Baixo | menos de 5 mm | não |
+| Moderado | 5 a 20 mm | não |
+| Forte | 20 a 50 mm | sim |
+| Muito forte | mais de 50 mm | sim |
 
-* **Escalonamento por intensidade:** se a maior chuva em 1 h for de 15 mm ou mais, o nível sobe para no mínimo **Forte**, mesmo com acumulado menor. Chuva concentrada é a que mais alaga.
-* As faixas são as mesmas da tabela `dim_nivel_alerta` do pipeline de Big Data do projeto.
-* **Sem aviso repetido:** cada inscrito recebe no máximo 1 aviso por município e por dia. Só recebe de novo se o nível **subir**, por exemplo de Forte para Muito forte.
-* **Só avisa quem pode receber:** precisa ter consentimento LGPD, estar ativo, ter e-mail e telefone válidos e morar em município monitorado.
+- Se chover 15 mm ou mais em 1 hora, sobe para Forte (chuva concentrada é a que mais alaga).
+- A mesma pessoa não recebe o mesmo aviso duas vezes no dia. Só recebe de novo se o nível aumentar.
+- Só recebe aviso quem aceitou os termos (LGPD), está ativo e tem e-mail e telefone válidos.
 
-Todos os limites ficam em `config/regras.json`, então dá para mudar sem alterar o código.
+Os valores ficam em `config/regras.json`.
 
-## Exceções e resiliência
+## Erros tratados
 
-| Situação | Tratamento | Onde ver |
-|---|---|---|
-| API fora do ar ou timeout | 3 tentativas com espera exponencial; depois usa o cache de até 6 h; sem cache, marca "Sem dados" e segue | evidência 3 |
-| HTTP 4xx | Não repete (erro do pedido), registra e segue | — |
-| Dado de chuva inválido (negativo, faltando, não numérico) | Rejeita só aquele município | evidência 4 |
-| Arquivo de inscrições ausente | Painel é gerado mesmo assim; envio bloqueado e registrado como ERROR | teste `test_sem_arquivo_de_inscricoes` |
-| Linha corrompida, e-mail ou telefone inválido, duplicada, sem consentimento | Inscrição rejeitada e contada por motivo | log `INSCRICOES_CARREGADAS` |
-| Estado de notificações corrompido | Aviso no log e o controle recomeça | `notificacao.py` |
-| Configuração ausente ou inválida | Falha fatal **explícita** (código 2) | teste `test_config_ausente_e_falha_fatal` |
-| Queda durante a gravação | Escrita atômica (`.tmp` e depois `os.replace`), então o MVP nunca lê arquivo pela metade | `main.py` |
+- **API fora do ar:** tenta 3 vezes. Se não der, usa a última previsão salva (até 6 h). Se não tiver, marca a cidade como "Sem dados" e continua com as outras.
+- **Dado de chuva inválido** (negativo, faltando hora etc.): ignora só aquela cidade.
+- **Arquivo de inscrições não existe:** gera o painel mesmo assim, mas não envia aviso.
+- **Inscrição com erro** (e-mail inválido, duplicada, linha quebrada): é descartada e contada no log.
+- **Config faltando:** para o robô com erro.
 
-Nenhuma falha é silenciosa: todas geram evento `WARNING` ou `ERROR` e mudam o status da execução.
+O robô termina com código 0 (ok), 1 (teve erro, mas continuou) ou 2 (erro grave).
 
-## Logs e auditoria
+## Logs
 
-* `logs/robo_AAAA-MM-DD.log`: uma linha por evento, com data e hora, nível e o que aconteceu (`INICIO_EXECUCAO`, `MUNICIPIO_PROCESSADO`, `API_TENTATIVA_FALHOU`, `CLIMA_CACHE`, `FIM_EXECUCAO`...)
-* `logs/execucoes.csv`: uma linha por execução com itens processados, sucessos, falhas, notificações e duração
+- `logs/robo_AAAA-MM-DD.log`: o que aconteceu em cada execução, com data e hora
+- `logs/execucoes.csv`: uma linha por execução (status, cidades processadas, erros, avisos enviados)
 
-## Integração com o MVP
+## LGPD
 
-O robô grava `saida/painel_alertas.json` e o painel em `mvp/index.html` lê esse arquivo a cada 60 s. O painel mostra o nível por município, a população em alerta e os avisos enviados. Também avisa quando os dados estão desatualizados (robô parado) ou quando algum município ficou sem dados.
+- As inscrições são fictícias.
+- O e-mail vira hash (SHA-256) e o telefone é mascarado: `(11) *****-1234`.
+- Nome, e-mail e telefone não aparecem nos logs nem no painel.
+- O "sal" do hash vem da variável de ambiente `RPA_HASH_SALT`.
 
-## Segurança e LGPD
+## Pastas
 
-* As inscrições são **fictícias** (dados simulados).
-* O e-mail vira **hash SHA-256 com sal** (o sal fica em variável de ambiente, não no código) e o telefone é **mascarado**: `(11) *****-1234`.
-* Nome, e-mail e telefone **nunca** aparecem no painel, nas notificações gravadas ou nos logs. Um filtro em `auditoria.py` apaga qualquer e-mail ou telefone que escape, e um teste automatizado confere isso.
-* Só recebe aviso quem deu consentimento (`aceite_lgpd = true`) e está ativo.
-
-## Testes
-
-9 testes automatizados, divididos em **sucesso**, **decisão**, **falha** e **LGPD**: `python -m unittest discover -s tests -v`. As saídas reais de cada cenário estão em [tests/evidencias/](tests/evidencias/). Veja também [tests/README.md](tests/README.md).
-
-## Limitações
-
-* O envio de e-mail e SMS é **simulado** (gravado em `saida/notificacoes/`), para não usar dados de pessoas reais.
-* A população é a do Censo 2022, fixa em `config/municipios.json`.
-* Os limiares são uma adaptação nossa. Não é aviso oficial: emergências, Defesa Civil 199.
+- `src/robo/`: código do robô
+- `config/`: cidades e regras
+- `dados/`: inscrições e cenários de teste
+- `mvp/`: painel que mostra o resultado
+- `docs/`: fluxo BPMN
+- `logs/`: logs gerados
+- `saida/`: painel e avisos gerados
+- `tests/`: testes e evidências
+- `assets/`: prints
