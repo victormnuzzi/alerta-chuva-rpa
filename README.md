@@ -9,7 +9,7 @@ Global Solution 2026.2 - Robotic Process Automation - Engenharia de Software 4º
 - Lucca Sabatini Tambellini - RM 98169
 - Victor Nuzzi - RM 98209
 
-Vídeo: _colocar link_
+Vídeo: https://www.youtube.com/watch?v=uAlrThNfixY
 
 ## Sobre
 
