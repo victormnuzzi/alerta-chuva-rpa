@@ -24,7 +24,7 @@ Sem automação, alguém teria que olhar a previsão das 12 cidades toda hora, v
 5. Grava o resultado em `saida/painel_alertas.json`, que é lido pelo painel do MVP (`mvp/index.html`)
 6. Registra tudo em `logs/`
 
-O fluxo em BPMN está em `docs/processo_alerta_chuva.bpmn` (dá para abrir no [bpmn.io](https://demo.bpmn.io)).
+O fluxo em BPMN está em `docs/processo_alerta_chuva.bpmn` (dá para abrir no [bpmn.io](https://demo.bpmn.io)). Também tem uma versão `docs/processo_alerta_chuva.xpdl` para importar no Bizagi.
 
 Feito em Python, só com a biblioteca padrão. Não precisa instalar nada.
 
