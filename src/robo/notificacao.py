@@ -1,7 +1,6 @@
 """Gera as notificacoes (envio simulado) sem mandar aviso repetido."""
 import json
 import os
-import urllib.request
 
 from .regras import ordem_do_nivel
 
@@ -64,19 +63,4 @@ class Notificador:
                 }, ensure_ascii=False) + "\n")
                 self.estado[chave] = ordem
                 enviadas += 1
-        if enviadas:
-            self._publicar_ntfy(mensagem)
         return enviadas, ignoradas
-
-    def _publicar_ntfy(self, mensagem):
-        """Canal opcional e público (sem dados pessoais): ntfy.sh/<NTFY_TOPIC>."""
-        topico = os.environ.get("NTFY_TOPIC")
-        if not topico:
-            return
-        try:
-            req = urllib.request.Request(f"https://ntfy.sh/{topico}", data=mensagem.encode("utf-8"),
-                                         headers={"Title": "Alerta Chuva SP", "Tags": "cloud_with_rain"})
-            urllib.request.urlopen(req, timeout=10).close()
-            self.aud.evento("NTFY_ENVIADO", "INFO")
-        except OSError as e:
-            self.aud.evento("NTFY_FALHOU", "ERROR", erro=type(e).__name__)

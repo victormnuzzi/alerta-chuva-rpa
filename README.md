@@ -31,7 +31,7 @@ Sem o robô, alguém da equipe teria que, para **cada um dos 12 municípios**, c
 ## Arquitetura
 
 ```
-             ┌──────────────── a cada hora (GitHub Actions / agendador) ───────────────┐
+             ┌──────────────── a cada hora (Agendador de Tarefas) ─────────────────────┐
              ▼                                                                         │
  config/ ─► Carregar configuração ─► Ler e validar inscrições (JSONL)                  │
                                          │                                             │
@@ -62,20 +62,18 @@ src/robo/
   coleta.py                 Open-Meteo: retry, backoff, validação, cache
   regras.py                 classificação do nível de alerta (decisões)
   inscritos.py              leitura/validação/deduplicação das inscrições
-  notificacao.py            envio simulado, controle para não repetir aviso, ntfy opcional
+  notificacao.py            envio simulado e controle para não repetir aviso
   auditoria.py              logs, eventos JSONL, resumo CSV
   lgpd.py                   hash, máscaras e limpeza de dados pessoais nos logs
 config/                     municípios (IBGE, Censo 2022) e regras de negócio
 dados/entrada/              inscrições SIMULADAS (com erros de propósito)
 dados/cenarios/             séries de chuva para demonstrar cada caminho
-scripts/gerar_dados.py      gera os dados simulados (semente fixa)
 mvp/index.html              painel do MVP que consome a saída do robô
 docs/                       fluxo BPMN do processo
 logs/                       amostras reais de log (sem dados sensíveis)
 saida/                      painel e notificações gerados
 tests/                      testes automatizados + evidências de execução
 assets/                     prints para o relatório
-.github/workflows/robo.yml  testes a cada push + execução agendada
 ```
 
 ## Como rodar
@@ -97,7 +95,7 @@ python -m http.server 8000
 
 **Códigos de saída:** `0` sucesso · `1` parcial (houve erros, todos tratados e registrados) · `2` falha fatal (configuração inválida).
 
-**Variáveis de ambiente** (ver `.env.example`): `RPA_HASH_SALT` (sal do hash de e-mail) e `NTFY_TOPIC` (opcional, envia o aviso público para o celular pelo ntfy.sh).
+**Variável de ambiente:** `RPA_HASH_SALT` (sal do hash de e-mail).
 
 ## Regras de negócio
 
@@ -142,11 +140,10 @@ O robô grava `saida/painel_alertas.json` e o painel em `mvp/index.html` lê ess
 
 ## Segurança e LGPD
 
-* As inscrições são **fictícias**, geradas por `scripts/gerar_dados.py`.
+* As inscrições são **fictícias** (dados simulados).
 * O e-mail vira **hash SHA-256 com sal** (o sal fica em variável de ambiente, não no código) e o telefone é **mascarado**: `(11) *****-1234`.
 * Nome, e-mail e telefone **nunca** aparecem no painel, nas notificações gravadas ou nos logs. Um filtro em `auditoria.py` apaga qualquer e-mail ou telefone que escape, e um teste automatizado confere isso.
 * Só recebe aviso quem deu consentimento (`aceite_lgpd = true`) e está ativo.
-* O canal ntfy, que é opcional, publica só a mensagem pública por município, sem dados pessoais.
 
 ## Testes
 
