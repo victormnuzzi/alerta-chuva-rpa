@@ -84,7 +84,7 @@ python executar.py --cenario chuva-forte             # demonstra a decisão de a
 python executar.py --simular-falha-api               # API fora do ar: retry e depois cache
 python executar.py --cenario dados-invalidos         # dados ruins isolados por município
 python executar.py --cenario chuva-forte --inscricoes nao_existe.jsonl   # arquivo ausente
-python -m unittest discover -s tests -v              # 18 testes
+python -m unittest discover -s tests -v              # roda os testes
 ```
 
 Para ver o MVP, abra um servidor local na raiz do projeto e acesse `http://localhost:8000/mvp/`:
@@ -117,10 +117,10 @@ Todos os limites ficam em `config/regras.json`, então dá para mudar sem altera
 
 | Situação | Tratamento | Onde ver |
 |---|---|---|
-| API fora do ar ou timeout | 3 tentativas com espera exponencial; depois usa o cache de até 6 h; sem cache, marca "Sem dados" e segue | `04_*` e `05_*` em tests/evidencias |
-| HTTP 4xx | Não repete (erro do pedido), registra e segue | teste `test_http_404_nao_repete` |
-| Dado de chuva inválido (negativo, faltando, não numérico) | Rejeita só aquele município | `06_*` |
-| Arquivo de inscrições ausente | Painel é gerado mesmo assim; envio bloqueado e registrado como ERROR | `07_*` |
+| API fora do ar ou timeout | 3 tentativas com espera exponencial; depois usa o cache de até 6 h; sem cache, marca "Sem dados" e segue | evidência 3 |
+| HTTP 4xx | Não repete (erro do pedido), registra e segue | — |
+| Dado de chuva inválido (negativo, faltando, não numérico) | Rejeita só aquele município | evidência 4 |
+| Arquivo de inscrições ausente | Painel é gerado mesmo assim; envio bloqueado e registrado como ERROR | teste `test_sem_arquivo_de_inscricoes` |
 | Linha corrompida, e-mail ou telefone inválido, duplicada, sem consentimento | Inscrição rejeitada e contada por motivo | log `INSCRICOES_CARREGADAS` |
 | Estado de notificações corrompido | Aviso no log e o controle recomeça | `notificacao.py` |
 | Configuração ausente ou inválida | Falha fatal **explícita** (código 2) | teste `test_config_ausente_e_falha_fatal` |
@@ -147,7 +147,7 @@ O robô grava `saida/painel_alertas.json` e o painel em `mvp/index.html` lê ess
 
 ## Testes
 
-18 testes automatizados, divididos em **sucesso**, **decisão**, **falha** e **LGPD**: `python -m unittest discover -s tests -v`. As saídas reais de cada cenário estão em [tests/evidencias/](tests/evidencias/). Veja também [tests/README.md](tests/README.md).
+9 testes automatizados, divididos em **sucesso**, **decisão**, **falha** e **LGPD**: `python -m unittest discover -s tests -v`. As saídas reais de cada cenário estão em [tests/evidencias/](tests/evidencias/). Veja também [tests/README.md](tests/README.md).
 
 ## Limitações
 

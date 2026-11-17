@@ -1,0 +1,15 @@
+$ python -m unittest discover -s tests -v
+test_chuva_concentrada_sobe_para_forte (test_robo.TestDecisao.test_chuva_concentrada_sobe_para_forte) ... ok
+test_classificacao (test_robo.TestDecisao.test_classificacao) ... ok
+test_nao_repete_aviso (test_robo.TestDecisao.test_nao_repete_aviso) ... ok
+test_api_fora_do_ar (test_robo.TestFalha.test_api_fora_do_ar) ... ok
+test_api_fora_usa_cache (test_robo.TestFalha.test_api_fora_usa_cache) ... ok
+test_dados_invalidos (test_robo.TestFalha.test_dados_invalidos) ... ok
+test_sem_arquivo_de_inscricoes (test_robo.TestFalha.test_sem_arquivo_de_inscricoes) ... ok
+test_email_nao_aparece_nos_logs (test_robo.TestLGPD.test_email_nao_aparece_nos_logs) ... ok
+test_cenario_seco_gera_painel_sem_alertas (test_robo.TestSucesso.test_cenario_seco_gera_painel_sem_alertas) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.994s
+
+OK
