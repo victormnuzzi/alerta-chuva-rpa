@@ -17,12 +17,12 @@ O Alerta Chuva SP avisa os moradores da Grande São Paulo quando vai chover fort
 
 Sem automação, alguém teria que olhar a previsão das 12 cidades toda hora, ver se a chuva é forte, separar os inscritos de cada cidade e mandar o aviso. O robô faz isso sozinho:
 
-1. Lê a configuração (cidades e regras) e as inscrições
-2. Para cada cidade, busca a previsão das próximas 24 h na API da Open-Meteo
-3. Classifica o nível de alerta
-4. Se for Forte ou Muito forte, avisa os inscritos daquela cidade (envio simulado)
-5. Grava o resultado em `saida/painel_alertas.json`, que é lido pelo painel do MVP (`mvp/index.html`)
-6. Registra tudo em `logs/`
+- Lê a configuração (cidades e regras) e as inscrições
+- Para cada cidade, busca a previsão das próximas 24 h na API da Open-Meteo
+- Classifica o nível de alerta
+- Se for Forte ou Muito forte, avisa os inscritos daquela cidade (envio simulado)
+- Grava o resultado em `saida/painel_alertas.json`, que é lido pelo painel do MVP (`mvp/index.html`)
+- Registra tudo em `logs/`
 
 O fluxo em BPMN está em `docs/processo_alerta_chuva.bpmn` (dá para abrir no [bpmn.io](https://demo.bpmn.io)). Também tem uma versão `docs/processo_alerta_chuva.xpdl` para importar no Bizagi.
 
