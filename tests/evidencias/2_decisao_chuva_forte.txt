@@ -1,26 +1,25 @@
-$ python executar.py --cenario chuva-forte
-2026-11-17 01:08:41 | INFO    | [INICIO_EXECUCAO] cenario=chuva-forte simular_falha_api=False referencia=2026-11-17T01:00
-2026-11-17 01:08:41 | INFO    | [INSCRICOES_CARREGADAS] validos=256 rejeitados={'sem_consentimento': 11, 'email_invalido': 6, 'telefone_invalido': 15, 'inscricao_inativa': 5, 'duplicado': 3, 'linha_nao_json': 1, 'municipio_nao_monitorado': 8}
-2026-11-17 01:08:41 | INFO    | [MUNICIPIO_PROCESSADO] municipio=São Paulo fonte=fixture chuva_24h_mm=62.0 max_1h_mm=9.1 nivel_alerta=Muito forte motivo=acumulado 62.0 mm >= 50 mm decisao=NOTIFICAR enviadas=167 ja_avisados=0
-2026-11-17 01:08:41 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Guarulhos fonte=fixture chuva_24h_mm=36.0 max_1h_mm=5.3 nivel_alerta=Forte motivo=acumulado 36.0 mm >= 20 mm decisao=NOTIFICAR enviadas=12 ja_avisados=0
-2026-11-17 01:08:41 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Osasco fonte=fixture chuva_24h_mm=11.8 max_1h_mm=1.7 nivel_alerta=Moderado motivo=acumulado 11.8 mm >= 5 mm decisao=SEM_ALERTA
-2026-11-17 01:08:41 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Santo André fonte=fixture chuva_24h_mm=1.0 max_1h_mm=0.2 nivel_alerta=Baixo motivo=acumulado 1.0 mm >= 0 mm decisao=SEM_ALERTA
-2026-11-17 01:08:41 | INFO    | [MUNICIPIO_PROCESSADO] municipio=São Bernardo do Campo fonte=fixture chuva_24h_mm=1.0 max_1h_mm=0.2 nivel_alerta=Baixo motivo=acumulado 1.0 mm >= 0 mm decisao=SEM_ALERTA
-2026-11-17 01:08:41 | INFO    | [MUNICIPIO_PROCESSADO] municipio=São Caetano do Sul fonte=fixture chuva_24h_mm=3.8 max_1h_mm=0.6 nivel_alerta=Baixo motivo=acumulado 3.8 mm >= 0 mm decisao=SEM_ALERTA
-2026-11-17 01:08:41 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Mauá fonte=fixture chuva_24h_mm=1.0 max_1h_mm=0.2 nivel_alerta=Baixo motivo=acumulado 1.0 mm >= 0 mm decisao=SEM_ALERTA
-2026-11-17 01:08:41 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Diadema fonte=fixture chuva_24h_mm=17.2 max_1h_mm=16.0 nivel_alerta=Forte motivo=escalonado: 16.0 mm em 1 h >= 15 mm decisao=NOTIFICAR enviadas=4 ja_avisados=0
-2026-11-17 01:08:41 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Barueri fonte=fixture chuva_24h_mm=4.0 max_1h_mm=0.6 nivel_alerta=Baixo motivo=acumulado 4.0 mm >= 0 mm decisao=SEM_ALERTA
-2026-11-17 01:08:41 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Taboão da Serra fonte=fixture chuva_24h_mm=3.3 max_1h_mm=0.5 nivel_alerta=Baixo motivo=acumulado 3.3 mm >= 0 mm decisao=SEM_ALERTA
-2026-11-17 01:08:41 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Franco da Rocha fonte=fixture chuva_24h_mm=0.5 max_1h_mm=0.1 nivel_alerta=Baixo motivo=acumulado 0.5 mm >= 0 mm decisao=SEM_ALERTA
-2026-11-17 01:08:41 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Mogi das Cruzes fonte=fixture chuva_24h_mm=2.1 max_1h_mm=0.4 nivel_alerta=Baixo motivo=acumulado 2.1 mm >= 0 mm decisao=SEM_ALERTA
-2026-11-17 01:08:41 | INFO    | [PAINEL_PUBLICADO] arquivo=saida/painel_alertas.json municipios_em_alerta=3
-2026-11-17 01:08:41 | INFO    | [FIM_EXECUCAO] execucao_id=20261117T010841-873d0c inicio=2026-11-17T01:08:41 fim=2026-11-17T01:08:41 duracao_s=0.07 status=SUCESSO municipios_processados=12 municipios_com_erro=0 municipios_via_cache=0 alertas_emitidos=3 inscritos_validos=256 inscritos_rejeitados=49 notificacoes_enviadas=183 notificacoes_ignoradas_duplicadas=0 total_erros=0
+2026-11-17 16:05:35 | INFO    | [INICIO_EXECUCAO] cenario=chuva-forte simular_falha_api=False referencia=2026-11-17T16:00
+2026-11-17 16:05:35 | INFO    | [INSCRICOES_CARREGADAS] validos=256 rejeitados={'sem_consentimento': 11, 'email_invalido': 6, 'telefone_invalido': 15, 'inscricao_inativa': 5, 'duplicado': 3, 'linha_nao_json': 1, 'municipio_nao_monitorado': 8}
+2026-11-17 16:05:35 | INFO    | [MUNICIPIO_PROCESSADO] municipio=São Paulo fonte=fixture chuva_24h_mm=62.0 max_1h_mm=9.1 nivel_alerta=Muito forte motivo=acumulado 62.0 mm >= 50 mm decisao=NOTIFICAR enviadas=167 ja_avisados=0
+2026-11-17 16:05:35 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Guarulhos fonte=fixture chuva_24h_mm=36.0 max_1h_mm=5.3 nivel_alerta=Forte motivo=acumulado 36.0 mm >= 20 mm decisao=NOTIFICAR enviadas=12 ja_avisados=0
+2026-11-17 16:05:35 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Osasco fonte=fixture chuva_24h_mm=11.8 max_1h_mm=1.7 nivel_alerta=Moderado motivo=acumulado 11.8 mm >= 5 mm decisao=SEM_ALERTA
+2026-11-17 16:05:35 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Santo André fonte=fixture chuva_24h_mm=1.0 max_1h_mm=0.2 nivel_alerta=Baixo motivo=acumulado 1.0 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 16:05:35 | INFO    | [MUNICIPIO_PROCESSADO] municipio=São Bernardo do Campo fonte=fixture chuva_24h_mm=1.0 max_1h_mm=0.2 nivel_alerta=Baixo motivo=acumulado 1.0 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 16:05:35 | INFO    | [MUNICIPIO_PROCESSADO] municipio=São Caetano do Sul fonte=fixture chuva_24h_mm=3.8 max_1h_mm=0.6 nivel_alerta=Baixo motivo=acumulado 3.8 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 16:05:35 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Mauá fonte=fixture chuva_24h_mm=1.0 max_1h_mm=0.2 nivel_alerta=Baixo motivo=acumulado 1.0 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 16:05:35 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Diadema fonte=fixture chuva_24h_mm=17.2 max_1h_mm=16.0 nivel_alerta=Forte motivo=escalonado: 16.0 mm em 1 h >= 15 mm decisao=NOTIFICAR enviadas=4 ja_avisados=0
+2026-11-17 16:05:35 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Barueri fonte=fixture chuva_24h_mm=4.0 max_1h_mm=0.6 nivel_alerta=Baixo motivo=acumulado 4.0 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 16:05:35 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Taboão da Serra fonte=fixture chuva_24h_mm=3.3 max_1h_mm=0.5 nivel_alerta=Baixo motivo=acumulado 3.3 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 16:05:35 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Franco da Rocha fonte=fixture chuva_24h_mm=0.5 max_1h_mm=0.1 nivel_alerta=Baixo motivo=acumulado 0.5 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 16:05:35 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Mogi das Cruzes fonte=fixture chuva_24h_mm=2.1 max_1h_mm=0.4 nivel_alerta=Baixo motivo=acumulado 2.1 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 16:05:35 | INFO    | [PAINEL_PUBLICADO] arquivo=saida/painel_alertas.json municipios_em_alerta=3
+2026-11-17 16:05:35 | INFO    | [FIM_EXECUCAO] execucao_id=20261117T160535-e38777 inicio=2026-11-17T16:05:35 fim=2026-11-17T16:05:35 duracao_s=0.01 status=SUCESSO municipios_processados=12 municipios_com_erro=0 municipios_via_cache=0 alertas_emitidos=3 inscritos_validos=256 inscritos_rejeitados=49 notificacoes_enviadas=183 notificacoes_ignoradas_duplicadas=0 total_erros=0
 
 ===== RESUMO DA EXECUÇÃO =====
-execucao_id                         20261117T010841-873d0c
-inicio                              2026-11-17T01:08:41
-fim                                 2026-11-17T01:08:41
-duracao_s                           0.07
+execucao_id                         20261117T160535-e38777
+inicio                              2026-11-17T16:05:35
+fim                                 2026-11-17T16:05:35
+duracao_s                           0.01
 status                              SUCESSO
 municipios_processados              12
 municipios_com_erro                 0
@@ -31,4 +30,3 @@ inscritos_rejeitados                49
 notificacoes_enviadas               183
 notificacoes_ignoradas_duplicadas   0
 total_erros                         0
-(código de saída: 0)
