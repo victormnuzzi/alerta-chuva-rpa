@@ -195,3 +195,127 @@
 2026-11-17 16:56:35 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Mogi das Cruzes fonte=fixture chuva_24h_mm=2.1 max_1h_mm=0.4 nivel_alerta=Baixo motivo=acumulado 2.1 mm >= 0 mm decisao=SEM_ALERTA
 2026-11-17 16:56:35 | INFO    | [PAINEL_PUBLICADO] arquivo=saida/painel_alertas.json municipios_em_alerta=3
 2026-11-17 16:56:35 | INFO    | [FIM_EXECUCAO] execucao_id=20261117T165635-ef5bad inicio=2026-11-17T16:56:35 fim=2026-11-17T16:56:35 duracao_s=0.01 status=SUCESSO municipios_processados=12 municipios_com_erro=0 municipios_via_cache=0 alertas_emitidos=3 inscritos_validos=256 inscritos_rejeitados=49 notificacoes_enviadas=183 notificacoes_ignoradas_duplicadas=0 total_erros=0
+2026-11-17 17:40:40 | INFO    | [INICIO_EXECUCAO] cenario=real simular_falha_api=False referencia=2026-11-17T17:00
+2026-11-17 17:40:40 | INFO    | [INSCRICOES_CARREGADAS] validos=256 rejeitados={'sem_consentimento': 11, 'email_invalido': 6, 'telefone_invalido': 15, 'inscricao_inativa': 5, 'duplicado': 3, 'linha_nao_json': 1, 'municipio_nao_monitorado': 8}
+2026-11-17 17:40:41 | INFO    | [MUNICIPIO_PROCESSADO] municipio=São Paulo fonte=api chuva_24h_mm=0.4 max_1h_mm=0.2 nivel_alerta=Baixo motivo=acumulado 0.4 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:40:41 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Guarulhos fonte=api chuva_24h_mm=0.3 max_1h_mm=0.2 nivel_alerta=Baixo motivo=acumulado 0.3 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:40:42 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Osasco fonte=api chuva_24h_mm=0.6 max_1h_mm=0.3 nivel_alerta=Baixo motivo=acumulado 0.6 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:40:43 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Santo André fonte=api chuva_24h_mm=0.9 max_1h_mm=0.4 nivel_alerta=Baixo motivo=acumulado 0.9 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:40:43 | INFO    | [MUNICIPIO_PROCESSADO] municipio=São Bernardo do Campo fonte=api chuva_24h_mm=0.8 max_1h_mm=0.4 nivel_alerta=Baixo motivo=acumulado 0.8 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:40:44 | INFO    | [MUNICIPIO_PROCESSADO] municipio=São Caetano do Sul fonte=api chuva_24h_mm=0.6 max_1h_mm=0.4 nivel_alerta=Baixo motivo=acumulado 0.6 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:40:44 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Mauá fonte=api chuva_24h_mm=1.8 max_1h_mm=1.4 nivel_alerta=Baixo motivo=acumulado 1.8 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:40:45 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Diadema fonte=api chuva_24h_mm=0.2 max_1h_mm=0.1 nivel_alerta=Baixo motivo=acumulado 0.2 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:40:45 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Barueri fonte=api chuva_24h_mm=0.5 max_1h_mm=0.3 nivel_alerta=Baixo motivo=acumulado 0.5 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:40:46 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Taboão da Serra fonte=api chuva_24h_mm=0.4 max_1h_mm=0.2 nivel_alerta=Baixo motivo=acumulado 0.4 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:40:47 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Franco da Rocha fonte=api chuva_24h_mm=1.1 max_1h_mm=0.7 nivel_alerta=Baixo motivo=acumulado 1.1 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:40:47 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Mogi das Cruzes fonte=api chuva_24h_mm=0.3 max_1h_mm=0.1 nivel_alerta=Baixo motivo=acumulado 0.3 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:40:47 | INFO    | [PAINEL_PUBLICADO] arquivo=saida/painel_alertas.json municipios_em_alerta=0
+2026-11-17 17:40:47 | INFO    | [FIM_EXECUCAO] execucao_id=20261117T174040-0799b3 inicio=2026-11-17T17:40:40 fim=2026-11-17T17:40:47 duracao_s=7.29 status=SUCESSO municipios_processados=12 municipios_com_erro=0 municipios_via_cache=0 alertas_emitidos=0 inscritos_validos=256 inscritos_rejeitados=49 notificacoes_enviadas=0 notificacoes_ignoradas_duplicadas=0 total_erros=0
+2026-11-17 17:41:54 | INFO    | [INICIO_EXECUCAO] cenario=chuva-forte simular_falha_api=False referencia=2026-11-17T17:00
+2026-11-17 17:41:54 | INFO    | [INSCRICOES_CARREGADAS] validos=256 rejeitados={'sem_consentimento': 11, 'email_invalido': 6, 'telefone_invalido': 15, 'inscricao_inativa': 5, 'duplicado': 3, 'linha_nao_json': 1, 'municipio_nao_monitorado': 8}
+2026-11-17 17:41:54 | INFO    | [MUNICIPIO_PROCESSADO] municipio=São Paulo fonte=fixture chuva_24h_mm=62.0 max_1h_mm=9.1 nivel_alerta=Muito forte motivo=acumulado 62.0 mm >= 50 mm decisao=NOTIFICAR enviadas=167 ja_avisados=0
+2026-11-17 17:41:54 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Guarulhos fonte=fixture chuva_24h_mm=36.0 max_1h_mm=5.3 nivel_alerta=Forte motivo=acumulado 36.0 mm >= 20 mm decisao=NOTIFICAR enviadas=12 ja_avisados=0
+2026-11-17 17:41:54 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Osasco fonte=fixture chuva_24h_mm=11.8 max_1h_mm=1.7 nivel_alerta=Moderado motivo=acumulado 11.8 mm >= 5 mm decisao=SEM_ALERTA
+2026-11-17 17:41:54 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Santo André fonte=fixture chuva_24h_mm=1.0 max_1h_mm=0.2 nivel_alerta=Baixo motivo=acumulado 1.0 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:41:54 | INFO    | [MUNICIPIO_PROCESSADO] municipio=São Bernardo do Campo fonte=fixture chuva_24h_mm=1.0 max_1h_mm=0.2 nivel_alerta=Baixo motivo=acumulado 1.0 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:41:54 | INFO    | [MUNICIPIO_PROCESSADO] municipio=São Caetano do Sul fonte=fixture chuva_24h_mm=3.8 max_1h_mm=0.6 nivel_alerta=Baixo motivo=acumulado 3.8 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:41:54 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Mauá fonte=fixture chuva_24h_mm=1.0 max_1h_mm=0.2 nivel_alerta=Baixo motivo=acumulado 1.0 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:41:54 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Diadema fonte=fixture chuva_24h_mm=17.2 max_1h_mm=16.0 nivel_alerta=Forte motivo=escalonado: 16.0 mm em 1 h >= 15 mm decisao=NOTIFICAR enviadas=4 ja_avisados=0
+2026-11-17 17:41:54 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Barueri fonte=fixture chuva_24h_mm=4.0 max_1h_mm=0.6 nivel_alerta=Baixo motivo=acumulado 4.0 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:41:54 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Taboão da Serra fonte=fixture chuva_24h_mm=3.3 max_1h_mm=0.5 nivel_alerta=Baixo motivo=acumulado 3.3 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:41:54 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Franco da Rocha fonte=fixture chuva_24h_mm=0.5 max_1h_mm=0.1 nivel_alerta=Baixo motivo=acumulado 0.5 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:41:54 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Mogi das Cruzes fonte=fixture chuva_24h_mm=2.1 max_1h_mm=0.4 nivel_alerta=Baixo motivo=acumulado 2.1 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:41:54 | INFO    | [PAINEL_PUBLICADO] arquivo=saida/painel_alertas.json municipios_em_alerta=3
+2026-11-17 17:41:54 | INFO    | [FIM_EXECUCAO] execucao_id=20261117T174154-d3aeea inicio=2026-11-17T17:41:54 fim=2026-11-17T17:41:54 duracao_s=0.01 status=SUCESSO municipios_processados=12 municipios_com_erro=0 municipios_via_cache=0 alertas_emitidos=3 inscritos_validos=256 inscritos_rejeitados=49 notificacoes_enviadas=183 notificacoes_ignoradas_duplicadas=0 total_erros=0
+2026-11-17 17:46:49 | INFO    | [INICIO_EXECUCAO] cenario=chuva-forte simular_falha_api=False referencia=2026-11-17T17:00
+2026-11-17 17:46:49 | INFO    | [INSCRICOES_CARREGADAS] validos=256 rejeitados={'sem_consentimento': 11, 'email_invalido': 6, 'telefone_invalido': 15, 'inscricao_inativa': 5, 'duplicado': 3, 'linha_nao_json': 1, 'municipio_nao_monitorado': 8}
+2026-11-17 17:46:49 | INFO    | [MUNICIPIO_PROCESSADO] municipio=São Paulo fonte=fixture chuva_24h_mm=62.0 max_1h_mm=9.1 nivel_alerta=Muito forte motivo=acumulado 62.0 mm >= 50 mm decisao=NOTIFICAR enviadas=0 ja_avisados=167
+2026-11-17 17:46:49 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Guarulhos fonte=fixture chuva_24h_mm=36.0 max_1h_mm=5.3 nivel_alerta=Forte motivo=acumulado 36.0 mm >= 20 mm decisao=NOTIFICAR enviadas=0 ja_avisados=12
+2026-11-17 17:46:49 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Osasco fonte=fixture chuva_24h_mm=11.8 max_1h_mm=1.7 nivel_alerta=Moderado motivo=acumulado 11.8 mm >= 5 mm decisao=SEM_ALERTA
+2026-11-17 17:46:49 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Santo André fonte=fixture chuva_24h_mm=1.0 max_1h_mm=0.2 nivel_alerta=Baixo motivo=acumulado 1.0 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:46:49 | INFO    | [MUNICIPIO_PROCESSADO] municipio=São Bernardo do Campo fonte=fixture chuva_24h_mm=1.0 max_1h_mm=0.2 nivel_alerta=Baixo motivo=acumulado 1.0 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:46:49 | INFO    | [MUNICIPIO_PROCESSADO] municipio=São Caetano do Sul fonte=fixture chuva_24h_mm=3.8 max_1h_mm=0.6 nivel_alerta=Baixo motivo=acumulado 3.8 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:46:49 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Mauá fonte=fixture chuva_24h_mm=1.0 max_1h_mm=0.2 nivel_alerta=Baixo motivo=acumulado 1.0 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:46:49 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Diadema fonte=fixture chuva_24h_mm=17.2 max_1h_mm=16.0 nivel_alerta=Forte motivo=escalonado: 16.0 mm em 1 h >= 15 mm decisao=NOTIFICAR enviadas=0 ja_avisados=4
+2026-11-17 17:46:49 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Barueri fonte=fixture chuva_24h_mm=4.0 max_1h_mm=0.6 nivel_alerta=Baixo motivo=acumulado 4.0 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:46:49 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Taboão da Serra fonte=fixture chuva_24h_mm=3.3 max_1h_mm=0.5 nivel_alerta=Baixo motivo=acumulado 3.3 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:46:49 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Franco da Rocha fonte=fixture chuva_24h_mm=0.5 max_1h_mm=0.1 nivel_alerta=Baixo motivo=acumulado 0.5 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:46:49 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Mogi das Cruzes fonte=fixture chuva_24h_mm=2.1 max_1h_mm=0.4 nivel_alerta=Baixo motivo=acumulado 2.1 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:46:49 | INFO    | [PAINEL_PUBLICADO] arquivo=saida/painel_alertas.json municipios_em_alerta=3
+2026-11-17 17:46:49 | INFO    | [FIM_EXECUCAO] execucao_id=20261117T174649-6b7a8d inicio=2026-11-17T17:46:49 fim=2026-11-17T17:46:49 duracao_s=0.05 status=SUCESSO municipios_processados=12 municipios_com_erro=0 municipios_via_cache=0 alertas_emitidos=3 inscritos_validos=256 inscritos_rejeitados=49 notificacoes_enviadas=0 notificacoes_ignoradas_duplicadas=183 total_erros=0
+2026-11-17 17:47:30 | INFO    | [INICIO_EXECUCAO] cenario=real simular_falha_api=True referencia=2026-11-17T17:00
+2026-11-17 17:47:30 | INFO    | [INSCRICOES_CARREGADAS] validos=256 rejeitados={'sem_consentimento': 11, 'email_invalido': 6, 'telefone_invalido': 15, 'inscricao_inativa': 5, 'duplicado': 3, 'linha_nao_json': 1, 'municipio_nao_monitorado': 8}
+2026-11-17 17:47:30 | WARNING | [API_TENTATIVA_FALHOU] municipio=São Paulo tentativa=1 erro=URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:30 | WARNING | [API_TENTATIVA_FALHOU] municipio=São Paulo tentativa=2 erro=URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:31 | WARNING | [API_TENTATIVA_FALHOU] municipio=São Paulo tentativa=3 erro=URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:31 | WARNING | [CLIMA_FALHA] municipio=São Paulo tipo_erro=ClimaIndisponivel detalhe=Open-Meteo indisponível após tentativas: URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:31 | WARNING | [CLIMA_CACHE] municipio=São Paulo salvo_em=2026-11-17T17:00:00
+2026-11-17 17:47:31 | INFO    | [MUNICIPIO_PROCESSADO] municipio=São Paulo fonte=cache chuva_24h_mm=0.4 max_1h_mm=0.2 nivel_alerta=Baixo motivo=acumulado 0.4 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:47:31 | WARNING | [API_TENTATIVA_FALHOU] municipio=Guarulhos tentativa=1 erro=URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:32 | WARNING | [API_TENTATIVA_FALHOU] municipio=Guarulhos tentativa=2 erro=URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:33 | WARNING | [API_TENTATIVA_FALHOU] municipio=Guarulhos tentativa=3 erro=URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:33 | WARNING | [CLIMA_FALHA] municipio=Guarulhos tipo_erro=ClimaIndisponivel detalhe=Open-Meteo indisponível após tentativas: URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:33 | WARNING | [CLIMA_CACHE] municipio=Guarulhos salvo_em=2026-11-17T17:00:00
+2026-11-17 17:47:33 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Guarulhos fonte=cache chuva_24h_mm=0.3 max_1h_mm=0.2 nivel_alerta=Baixo motivo=acumulado 0.3 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:47:33 | WARNING | [API_TENTATIVA_FALHOU] municipio=Osasco tentativa=1 erro=URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:33 | WARNING | [API_TENTATIVA_FALHOU] municipio=Osasco tentativa=2 erro=URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:34 | WARNING | [API_TENTATIVA_FALHOU] municipio=Osasco tentativa=3 erro=URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:34 | WARNING | [CLIMA_FALHA] municipio=Osasco tipo_erro=ClimaIndisponivel detalhe=Open-Meteo indisponível após tentativas: URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:34 | WARNING | [CLIMA_CACHE] municipio=Osasco salvo_em=2026-11-17T17:00:00
+2026-11-17 17:47:34 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Osasco fonte=cache chuva_24h_mm=0.6 max_1h_mm=0.3 nivel_alerta=Baixo motivo=acumulado 0.6 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:47:34 | WARNING | [API_TENTATIVA_FALHOU] municipio=Santo André tentativa=1 erro=URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:35 | WARNING | [API_TENTATIVA_FALHOU] municipio=Santo André tentativa=2 erro=URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:36 | WARNING | [API_TENTATIVA_FALHOU] municipio=Santo André tentativa=3 erro=URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:36 | WARNING | [CLIMA_FALHA] municipio=Santo André tipo_erro=ClimaIndisponivel detalhe=Open-Meteo indisponível após tentativas: URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:36 | WARNING | [CLIMA_CACHE] municipio=Santo André salvo_em=2026-11-17T17:00:00
+2026-11-17 17:47:36 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Santo André fonte=cache chuva_24h_mm=0.9 max_1h_mm=0.4 nivel_alerta=Baixo motivo=acumulado 0.9 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:47:36 | WARNING | [API_TENTATIVA_FALHOU] municipio=São Bernardo do Campo tentativa=1 erro=URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:36 | WARNING | [API_TENTATIVA_FALHOU] municipio=São Bernardo do Campo tentativa=2 erro=URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:37 | WARNING | [API_TENTATIVA_FALHOU] municipio=São Bernardo do Campo tentativa=3 erro=URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:37 | WARNING | [CLIMA_FALHA] municipio=São Bernardo do Campo tipo_erro=ClimaIndisponivel detalhe=Open-Meteo indisponível após tentativas: URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:37 | WARNING | [CLIMA_CACHE] municipio=São Bernardo do Campo salvo_em=2026-11-17T17:00:00
+2026-11-17 17:47:37 | INFO    | [MUNICIPIO_PROCESSADO] municipio=São Bernardo do Campo fonte=cache chuva_24h_mm=0.8 max_1h_mm=0.4 nivel_alerta=Baixo motivo=acumulado 0.8 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:47:37 | WARNING | [API_TENTATIVA_FALHOU] municipio=São Caetano do Sul tentativa=1 erro=URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:38 | WARNING | [API_TENTATIVA_FALHOU] municipio=São Caetano do Sul tentativa=2 erro=URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:39 | WARNING | [API_TENTATIVA_FALHOU] municipio=São Caetano do Sul tentativa=3 erro=URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:39 | WARNING | [CLIMA_FALHA] municipio=São Caetano do Sul tipo_erro=ClimaIndisponivel detalhe=Open-Meteo indisponível após tentativas: URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:39 | WARNING | [CLIMA_CACHE] municipio=São Caetano do Sul salvo_em=2026-11-17T17:00:00
+2026-11-17 17:47:39 | INFO    | [MUNICIPIO_PROCESSADO] municipio=São Caetano do Sul fonte=cache chuva_24h_mm=0.6 max_1h_mm=0.4 nivel_alerta=Baixo motivo=acumulado 0.6 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:47:39 | WARNING | [API_TENTATIVA_FALHOU] municipio=Mauá tentativa=1 erro=URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:39 | WARNING | [API_TENTATIVA_FALHOU] municipio=Mauá tentativa=2 erro=URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:40 | WARNING | [API_TENTATIVA_FALHOU] municipio=Mauá tentativa=3 erro=URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:40 | WARNING | [CLIMA_FALHA] municipio=Mauá tipo_erro=ClimaIndisponivel detalhe=Open-Meteo indisponível após tentativas: URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:40 | WARNING | [CLIMA_CACHE] municipio=Mauá salvo_em=2026-11-17T17:00:00
+2026-11-17 17:47:40 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Mauá fonte=cache chuva_24h_mm=1.8 max_1h_mm=1.4 nivel_alerta=Baixo motivo=acumulado 1.8 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:47:40 | WARNING | [API_TENTATIVA_FALHOU] municipio=Diadema tentativa=1 erro=URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:41 | WARNING | [API_TENTATIVA_FALHOU] municipio=Diadema tentativa=2 erro=URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:42 | WARNING | [API_TENTATIVA_FALHOU] municipio=Diadema tentativa=3 erro=URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:42 | WARNING | [CLIMA_FALHA] municipio=Diadema tipo_erro=ClimaIndisponivel detalhe=Open-Meteo indisponível após tentativas: URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:42 | WARNING | [CLIMA_CACHE] municipio=Diadema salvo_em=2026-11-17T17:00:00
+2026-11-17 17:47:42 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Diadema fonte=cache chuva_24h_mm=0.2 max_1h_mm=0.1 nivel_alerta=Baixo motivo=acumulado 0.2 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:47:42 | WARNING | [API_TENTATIVA_FALHOU] municipio=Barueri tentativa=1 erro=URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:43 | WARNING | [API_TENTATIVA_FALHOU] municipio=Barueri tentativa=2 erro=URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:44 | WARNING | [API_TENTATIVA_FALHOU] municipio=Barueri tentativa=3 erro=URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:44 | WARNING | [CLIMA_FALHA] municipio=Barueri tipo_erro=ClimaIndisponivel detalhe=Open-Meteo indisponível após tentativas: URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:44 | WARNING | [CLIMA_CACHE] municipio=Barueri salvo_em=2026-11-17T17:00:00
+2026-11-17 17:47:44 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Barueri fonte=cache chuva_24h_mm=0.5 max_1h_mm=0.3 nivel_alerta=Baixo motivo=acumulado 0.5 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:47:44 | WARNING | [API_TENTATIVA_FALHOU] municipio=Taboão da Serra tentativa=1 erro=URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:44 | WARNING | [API_TENTATIVA_FALHOU] municipio=Taboão da Serra tentativa=2 erro=URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:45 | WARNING | [API_TENTATIVA_FALHOU] municipio=Taboão da Serra tentativa=3 erro=URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:45 | WARNING | [CLIMA_FALHA] municipio=Taboão da Serra tipo_erro=ClimaIndisponivel detalhe=Open-Meteo indisponível após tentativas: URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:45 | WARNING | [CLIMA_CACHE] municipio=Taboão da Serra salvo_em=2026-11-17T17:00:00
+2026-11-17 17:47:45 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Taboão da Serra fonte=cache chuva_24h_mm=0.4 max_1h_mm=0.2 nivel_alerta=Baixo motivo=acumulado 0.4 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:47:45 | WARNING | [API_TENTATIVA_FALHOU] municipio=Franco da Rocha tentativa=1 erro=URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:46 | WARNING | [API_TENTATIVA_FALHOU] municipio=Franco da Rocha tentativa=2 erro=URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:47 | WARNING | [API_TENTATIVA_FALHOU] municipio=Franco da Rocha tentativa=3 erro=URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:47 | WARNING | [CLIMA_FALHA] municipio=Franco da Rocha tipo_erro=ClimaIndisponivel detalhe=Open-Meteo indisponível após tentativas: URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:47 | WARNING | [CLIMA_CACHE] municipio=Franco da Rocha salvo_em=2026-11-17T17:00:00
+2026-11-17 17:47:47 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Franco da Rocha fonte=cache chuva_24h_mm=1.1 max_1h_mm=0.7 nivel_alerta=Baixo motivo=acumulado 1.1 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:47:47 | WARNING | [API_TENTATIVA_FALHOU] municipio=Mogi das Cruzes tentativa=1 erro=URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:47 | WARNING | [API_TENTATIVA_FALHOU] municipio=Mogi das Cruzes tentativa=2 erro=URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:48 | WARNING | [API_TENTATIVA_FALHOU] municipio=Mogi das Cruzes tentativa=3 erro=URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:48 | WARNING | [CLIMA_FALHA] municipio=Mogi das Cruzes tipo_erro=ClimaIndisponivel detalhe=Open-Meteo indisponível após tentativas: URLError: <urlopen error falha simulada: Open-Meteo fora do ar>
+2026-11-17 17:47:48 | WARNING | [CLIMA_CACHE] municipio=Mogi das Cruzes salvo_em=2026-11-17T17:00:00
+2026-11-17 17:47:48 | INFO    | [MUNICIPIO_PROCESSADO] municipio=Mogi das Cruzes fonte=cache chuva_24h_mm=0.3 max_1h_mm=0.1 nivel_alerta=Baixo motivo=acumulado 0.3 mm >= 0 mm decisao=SEM_ALERTA
+2026-11-17 17:47:48 | INFO    | [PAINEL_PUBLICADO] arquivo=saida/painel_alertas.json municipios_em_alerta=0
+2026-11-17 17:47:48 | INFO    | [FIM_EXECUCAO] execucao_id=20261117T174730-584f87 inicio=2026-11-17T17:47:30 fim=2026-11-17T17:47:48 duracao_s=18.33 status=SUCESSO municipios_processados=12 municipios_com_erro=0 municipios_via_cache=12 alertas_emitidos=0 inscritos_validos=256 inscritos_rejeitados=49 notificacoes_enviadas=0 notificacoes_ignoradas_duplicadas=0 total_erros=0
