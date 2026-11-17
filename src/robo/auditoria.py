@@ -1,6 +1,5 @@
-"""Logs do robo: log normal, auditoria.jsonl (um evento por linha) e execucoes.csv (resumo)."""
+"""Logs do robo: log normal (robo_AAAA-MM-DD.log) e um resumo por execucao (execucoes.csv)."""
 import csv
-import json
 import logging
 import os
 import uuid
@@ -41,21 +40,9 @@ class Auditoria:
             tela.addFilter(_FiltroLGPD())
             self.log.addHandler(tela)
 
-    # Eventos
     def evento(self, tipo: str, nivel: str = "INFO", **dados):
-        """Registra um evento no log legível e no JSONL de auditoria."""
-        dados_limpos = {k: sanitizar_texto(str(v)) if isinstance(v, str) else v for k, v in dados.items()}
-        registro = {
-            "data_hora": datetime.now().isoformat(timespec="seconds"),
-            "execucao_id": self.execucao_id,
-            "tipo": tipo,
-            "nivel": nivel,
-            **dados_limpos,
-        }
-        with open(os.path.join(self.pasta, "auditoria.jsonl"), "a", encoding="utf-8") as f:
-            f.write(json.dumps(registro, ensure_ascii=False) + "\n")
-
-        texto = f"[{tipo}] " + " ".join(f"{k}={v}" for k, v in dados_limpos.items())
+        # escreve uma linha no log, ex: [MUNICIPIO_PROCESSADO] municipio=Osasco nivel_alerta=Baixo
+        texto = f"[{tipo}] " + " ".join(f"{k}={v}" for k, v in dados.items())
         getattr(self.log, nivel.lower(), self.log.info)(texto)
         if nivel in ("ERROR", "CRITICAL"):
             self.erros.append(texto)
@@ -63,7 +50,6 @@ class Auditoria:
     def contar(self, chave: str, n: int = 1):
         self.contadores[chave] += n
 
-    # Resumo
     def finalizar(self, status: str) -> dict:
         fim = datetime.now()
         resumo = {

@@ -25,7 +25,7 @@ Sem o robô, alguém da equipe teria que, para **cada um dos 12 municípios**, c
 | Classificar risco | Olhar tabela | Regra de negócio configurável (`config/regras.json`) |
 | Separar inscritos | Planilha | Validação, deduplicação e mascaramento automáticos |
 | Avisar | Mensagem por mensagem | Lote por município, sem repetir aviso |
-| Registro | Nenhum | Log com data e hora, JSONL de auditoria e CSV de execuções |
+| Registro | Nenhum | Log com data e hora e CSV com o resumo de cada execução |
 | Atualizar o MVP | Editar à mão | `saida/painel_alertas.json` gravado de forma atômica |
 
 ## Arquitetura
@@ -46,7 +46,7 @@ Sem o robô, alguém da equipe teria que, para **cada um dos 12 municípios**, c
                                          ▼                                             │
                 saida/painel_alertas.json ──► MVP (mvp/index.html)                     │
                 saida/notificacoes/AAAA-MM-DD.jsonl                                    │
-                logs/ (robo_*.log · auditoria.jsonl · execucoes.csv) ──────────────────┘
+                logs/ (robo_*.log · execucoes.csv) ──────────────────────────────────┘
 ```
 
 O fluxo completo em BPMN 2.0 está em [docs/processo_alerta_chuva.bpmn](docs/processo_alerta_chuva.bpmn). Ele abre em [bpmn.io](https://demo.bpmn.io) ou na página [docs/ver_bpmn.html](docs/ver_bpmn.html).
@@ -63,7 +63,7 @@ src/robo/
   regras.py                 classificação do nível de alerta (decisões)
   inscritos.py              leitura/validação/deduplicação das inscrições
   notificacao.py            envio simulado e controle para não repetir aviso
-  auditoria.py              logs, eventos JSONL, resumo CSV
+  auditoria.py              log e resumo CSV
   lgpd.py                   hash, máscaras e limpeza de dados pessoais nos logs
 config/                     municípios (IBGE, Censo 2022) e regras de negócio
 dados/entrada/              inscrições SIMULADAS (com erros de propósito)
@@ -130,8 +130,7 @@ Nenhuma falha é silenciosa: todas geram evento `WARNING` ou `ERROR` e mudam o s
 
 ## Logs e auditoria
 
-* `logs/robo_AAAA-MM-DD.log`: log legível com data e hora, nível e evento
-* `logs/auditoria.jsonl`: um evento estruturado por linha (`INICIO_EXECUCAO`, `MUNICIPIO_PROCESSADO`, `API_TENTATIVA_FALHOU`, `CLIMA_CACHE`, `FIM_EXECUCAO`…)
+* `logs/robo_AAAA-MM-DD.log`: uma linha por evento, com data e hora, nível e o que aconteceu (`INICIO_EXECUCAO`, `MUNICIPIO_PROCESSADO`, `API_TENTATIVA_FALHOU`, `CLIMA_CACHE`, `FIM_EXECUCAO`...)
 * `logs/execucoes.csv`: uma linha por execução com itens processados, sucessos, falhas, notificações e duração
 
 ## Integração com o MVP
